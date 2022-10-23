@@ -3,7 +3,7 @@ const config = require('./config')
 
 const { KEY_TOTEM } = config
 
-module.exports.fire = function () {
+module.exports.totem = function () {
   setTimeout(() => {
     robot.keyTap(KEY_TOTEM)
 

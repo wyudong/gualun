@@ -3,6 +3,6 @@ const config = require('./config')
 
 const { KEY_SOS } = config
 
-module.exports.fire = function () {
+module.exports.sos = function () {
   robot.keyTap(KEY_SOS)
 }

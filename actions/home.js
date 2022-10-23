@@ -3,6 +3,6 @@ const config = require('./config')
 
 const { KEY_HOME } = config
 
-module.exports.fire = function () {
+module.exports.home = function () {
   robot.keyTap(KEY_HOME)
 }
