@@ -1,8 +1,13 @@
 const robot = require('robotjs')
+const config = require('./config')
 
-module.exports.totem = function () {
+const { KEY_TOTEM } = config
+
+module.exports.fire = function () {
   setTimeout(() => {
-    console.log('tap f9')
-    robot.keyTap('f9')
+    robot.keyTap(KEY_TOTEM)
+
+    const now = new Date()
+    console.log(`${now} use ${KEY_TOTEM}`)
   }, 2000)
 }

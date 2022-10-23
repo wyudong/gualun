@@ -4,18 +4,42 @@
       <van-button
         type="default"
         class="btn-action"
-        color="#f03e3e"
+        color="#495057"
         @click="handleTotem"
       >
-        轮
+        轮回
       </van-button>
       <van-button
         type="default"
         class="btn-action"
-        color="#343a40"
+        color="#f03e3e"
         @click="handleFire"
       >
-        烧
+        燃烧
+      </van-button>
+      <van-button
+        type="default"
+        class="btn-action"
+        color="#37b24d"
+        @click="handleRebirth"
+      >
+        复活
+      </van-button>
+      <van-button
+        type="default"
+        class="btn-action"
+        color="#1c7ed6"
+        @click="handleSOS"
+      >
+        群攻
+      </van-button>
+      <van-button
+        type="default"
+        class="btn-action"
+        color="#e9ecef"
+        @click="handleHome"
+      >
+        回城
       </van-button>
     </div>
   </div>
@@ -30,6 +54,15 @@ export default {
     },
     async handleFire () {
       await this.$axios.post('/api/fire')
+    },
+    async handleRebirth () {
+      await this.$axios.post('/api/rebirth')
+    },
+    async handleSOS () {
+      await this.$axios.post('/api/sos')
+    },
+    async handleHome () {
+      await this.$axios.post('/api/home')
     }
   },
   head () {
