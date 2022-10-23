@@ -1,46 +1,41 @@
 <template>
   <div class="container">
     <div>
-      <van-button
-        type="default"
+      <vs-button
+        border
         class="btn-action"
-        color="#495057"
         @click="handleTotem"
       >
         轮回
-      </van-button>
-      <van-button
-        type="default"
+      </vs-button>
+      <vs-button
+        border
         class="btn-action"
-        color="#f03e3e"
         @click="handleFire"
       >
         燃烧
-      </van-button>
-      <van-button
-        type="default"
+      </vs-button>
+      <vs-button
+        border
         class="btn-action"
-        color="#37b24d"
         @click="handleRebirth"
       >
         复活
-      </van-button>
-      <van-button
-        type="default"
+      </vs-button>
+      <vs-button
+        border
         class="btn-action"
-        color="#1c7ed6"
         @click="handleSOS"
       >
         群攻
-      </van-button>
-      <van-button
-        type="default"
+      </vs-button>
+      <vs-button
+        border
         class="btn-action"
-        color="#e9ecef"
         @click="handleHome"
       >
         回城
-      </van-button>
+      </vs-button>
     </div>
   </div>
 </template>
@@ -48,32 +43,78 @@
 <script>
 export default {
   name: 'IndexPage',
-  methods: {
-    async handleTotem () {
-      await this.$axios.post('/api/totem')
-    },
-    async handleFire () {
-      await this.$axios.post('/api/fire')
-    },
-    async handleRebirth () {
-      await this.$axios.post('/api/rebirth')
-    },
-    async handleSOS () {
-      await this.$axios.post('/api/sos')
-    },
-    async handleHome () {
-      await this.$axios.post('/api/home')
-    }
-  },
   head () {
     return {
       title: '一天不练级就一天没长进'
+    }
+  },
+  methods: {
+    async handleTotem () {
+      try {
+        await this.$axios.post('/api/totem')
+        this.openNotification('轮回放置成功')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('轮回放置失败')
+      }
+    },
+    async handleFire () {
+      try {
+        await this.$axios.post('/api/fire')
+        this.openNotification('烧来了')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('烧出问题了')
+      }
+    },
+    async handleRebirth () {
+      try {
+        await this.$axios.post('/api/rebirth')
+        this.openNotification('起死回生？')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('见死不救')
+      }
+    },
+    async handleSOS () {
+      try {
+        await this.$axios.post('/api/sos')
+        this.openNotification('全屏清怪启动')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('没力气打怪了')
+      }
+    },
+    async handleHome () {
+      try {
+        await this.$axios.post('/api/home')
+        this.openNotification('收工回城')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('下班也回不了家')
+      }
+    },
+    openNotification (text) {
+      this.$vs.notification({
+        position: 'top-right',
+        duration: 1500,
+        title: '🥳',
+        text
+      })
     }
   }
 }
 </script>
 
 <style>
+body {
+  margin: 0;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -81,6 +122,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: #f5f7f8;
 }
 .btn-action {
   padding: 0 30px;

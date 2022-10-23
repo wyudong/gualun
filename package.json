@@ -19,10 +19,10 @@
     "express": "^4.18.2",
     "nuxt": "^2.15.8",
     "robotjs": "^0.6.0",
-    "vant": "^2.12.50",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10"
+    "vue-template-compiler": "^2.7.10",
+    "vuesax": "^4.0.1-alpha.25"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
