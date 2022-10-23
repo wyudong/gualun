@@ -139,6 +139,7 @@ export default {
 <style>
 body {
   margin: 0;
+  overflow: hidden;
 }
 .container {
   margin: 0 auto;
