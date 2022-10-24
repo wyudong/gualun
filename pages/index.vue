@@ -15,7 +15,9 @@
       >
         轮回
       </vs-button>
-      <p class="hint">轮回 10 分钟后失效，需要手动再次放置</p>
+      <p class="hint">
+        轮回 10 分钟后失效，需要手动再次放置
+      </p>
       <vs-button
         border
         class="btn-action"
@@ -24,7 +26,9 @@
       >
         燃烧
       </vs-button>
-      <p class="hint">燃烧有 20% 的机率碰到无冷</p>
+      <p class="hint">
+        燃烧有 20% 的机率碰到无冷
+      </p>
       <vs-button
         border
         class="btn-action"
@@ -33,7 +37,9 @@
       >
         复活
       </vs-button>
-      <p class="hint">如果我死了，烦请使用该项功能</p>
+      <p class="hint">
+        如果我死了，烦请使用该项功能
+      </p>
       <vs-button
         border
         class="btn-action"
@@ -42,7 +48,9 @@
       >
         群攻
       </vs-button>
-      <p class="hint">当黑王靠近我后，才推荐施放</p>
+      <p class="hint">
+        当黑王靠近我后，才推荐施放
+      </p>
       <vs-button
         border
         class="btn-action"
@@ -51,7 +59,9 @@
       >
         回城
       </vs-button>
-      <p class="hint">练级结束把我传回安全区</p>
+      <p class="hint">
+        练级结束把我传回安全区
+      </p>
     </div>
   </div>
 </template>
