@@ -7,27 +7,37 @@
     </vs-navbar>
 
     <div class="container">
-      <vs-button
-        border
-        class="btn-action"
-        :disabled="buttonDisabled"
-        @click="handleTotem"
-      >
-        轮回
-      </vs-button>
+      <div class="row-wrapper">
+        <vs-button
+          border
+          class="btn-action"
+          :disabled="buttonDisabled"
+          @click="handleTotem"
+        >
+          轮回
+        </vs-button>
+        <vs-switch v-model="autoToTem">
+          自动
+        </vs-switch>
+      </div>
       <p class="hint">
-        轮回 10 分钟后失效，需要手动再次放置
+        启用自动后，轮回 5 分钟一次
       </p>
-      <vs-button
-        border
-        class="btn-action"
-        :disabled="buttonDisabled"
-        @click="handleFire"
-      >
-        燃烧
-      </vs-button>
+      <div class="row-wrapper">
+        <vs-button
+          border
+          class="btn-action"
+          :disabled="buttonDisabled"
+          @click="handleFire"
+        >
+          燃烧
+        </vs-button>
+        <vs-switch v-model="autoFire">
+          自动
+        </vs-switch>
+      </div>
       <p class="hint">
-        燃烧有 20% 的机率碰到无冷
+        启用自动后，燃烧 30 分钟一次
       </p>
       <vs-button
         border
@@ -71,12 +81,54 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      buttonDisabled: false
+      buttonDisabled: false,
+      autoToTem: false,
+      autoFire: false
     }
   },
   head () {
     return {
       title: '一天不练级就一天没长进'
+    }
+  },
+  watch: {
+    async autoToTem (status) {
+      try {
+        this.buttonDisabled = true
+        await this.$axios.post('/api/totem/auto', {
+          status
+        })
+        if (status) {
+          this.openNotification('启用自动轮回')
+        } else {
+          this.openNotification('停用自动轮回')
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('自动轮回出错')
+      } finally {
+        this.buttonDisabled = false
+      }
+    },
+    async autoFire (status) {
+      try {
+        this.buttonDisabled = true
+        await this.$axios.post('/api/fire/auto', {
+          status
+        })
+        if (status) {
+          this.openNotification('启用自动燃烧')
+        } else {
+          this.openNotification('停用自动燃烧')
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('自动燃烧出错')
+      } finally {
+        this.buttonDisabled = false
+      }
     }
   },
   methods: {
@@ -175,12 +227,23 @@ body {
   padding: 20px;
   background: #212529;
 }
+.row-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .hint {
   margin: 5px 0 15px;
   color: #495057;
   font-size: 12px;
 }
 .btn-action {
+  margin-left: 20px;
+  margin-right: 20px;
   padding: 0 20px;
+}
+.vs-input-content {
+  margin: 10px 0px;
 }
 </style>
