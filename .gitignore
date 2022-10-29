@@ -1,4 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
+.totem
+.fire
+
 ### Node template
 # Logs
 /logs
