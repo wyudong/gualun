@@ -7,9 +7,7 @@ const path = `./${FLAG_FIRE}`
 
 module.exports.fire = () => {
   robot.keyTap(KEY_FIRE)
-
-  const now = new Date()
-  console.log(`${now} use ${KEY_FIRE}`)
+  console.log(`press ${KEY_FIRE}`)
 }
 
 module.exports.auto = (status) => {
@@ -21,9 +19,7 @@ module.exports.auto = (status) => {
     fs.writeFileSync(path, '')
     global.fireInterval = setInterval(() => {
       robot.keyTap(KEY_FIRE)
-
-      const now = new Date()
-      console.log(`${now} use ${KEY_FIRE} repeatedly`)
+      console.log(`press ${KEY_FIRE} repeatedly`)
     }, INTERVAL_FIRE)
     console.log('fire auto on')
   } else {

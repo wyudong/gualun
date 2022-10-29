@@ -7,9 +7,7 @@ const path = `./${FLAG_TOTEM}`
 
 module.exports.totem = () => {
   robot.keyTap(KEY_TOTEM)
-
-  const now = new Date()
-  console.log(`${now} use ${KEY_TOTEM}`)
+  console.log(`press ${KEY_TOTEM}`)
 }
 
 module.exports.auto = (status) => {
@@ -21,9 +19,7 @@ module.exports.auto = (status) => {
     fs.writeFileSync(path, '')
     global.totemInterval = setInterval(() => {
       robot.keyTap(KEY_TOTEM)
-
-      const now = new Date()
-      console.log(`${now} use ${KEY_TOTEM} repeatedly`)
+      console.log(`press ${KEY_TOTEM} repeatedly`)
     }, INTERVAL_TOTEM)
     console.log('totem auto on')
   } else {

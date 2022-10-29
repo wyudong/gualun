@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "rm -f .totem && rm -f .fire && nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -17,6 +17,7 @@
     "body-parser": "^1.20.1",
     "core-js": "^3.25.3",
     "express": "^4.18.2",
+    "morgan": "^1.10.0",
     "nuxt": "^2.15.8",
     "robotjs": "^0.6.0",
     "vue": "^2.7.10",

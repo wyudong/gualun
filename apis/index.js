@@ -1,12 +1,16 @@
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 const app = require('express')()
 const { fire, auto: fireAuto } = require('../actions/fire')
 const { totem, auto: totemAuto } = require('../actions/totem')
 const { rebirth } = require('../actions/rebirth')
+const { teleport } = require('../actions/teleport')
 const { sos } = require('../actions/sos')
 const { home } = require('../actions/home')
 
 app.use(bodyParser.json())
+app.use(morgan('tiny'))
+
 app.post('/fire', (req, res) => {
   fire()
   res.send('ok')
@@ -32,6 +36,10 @@ app.post('/auto/disable', (req, res) => {
 })
 app.post('/rebirth', (req, res) => {
   rebirth()
+  res.send('ok')
+})
+app.post('/teleport', (req, res) => {
+  teleport()
   res.send('ok')
 })
 app.post('/sos', (req, res) => {

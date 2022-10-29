@@ -54,6 +54,17 @@
         border
         class="btn-action"
         :disabled="buttonDisabled"
+        @click="handleTeleport"
+      >
+        瞬移
+      </vs-button>
+      <p class="hint">
+        随机变换位置
+      </p>
+      <vs-button
+        border
+        class="btn-action"
+        :disabled="buttonDisabled"
         @click="handleSOS"
       >
         群攻
@@ -176,6 +187,19 @@ export default {
         // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('见死不救')
+      } finally {
+        this.buttonDisabled = false
+      }
+    },
+    async handleTeleport () {
+      try {
+        this.buttonDisabled = true
+        await this.$axios.post('/api/teleport')
+        this.openNotification('瞬移成功')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('瞬移失败')
       } finally {
         this.buttonDisabled = false
       }

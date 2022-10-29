@@ -4,6 +4,6 @@ import 'vuesax/dist/vuesax.css'
 
 Vue.use(Vuesax, {
   colors: {
-    primary: '#d5397b'
+    primary: '#f08c00'
   }
 })

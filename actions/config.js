@@ -3,6 +3,7 @@ module.exports = {
   KEY_FIRE: 'f10',
   KEY_HOME: '0',
   KEY_SOS: 'delete',
+  KEY_TELEPORT: 'control',
   INTERVAL_TOTEM: 60 * 1000 * 5,
   INTERVAL_FIRE: 60 * 1000 * 30,
   FLAG_TOTEM: '.totem',
