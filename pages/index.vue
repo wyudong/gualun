@@ -246,7 +246,6 @@ export default {
 <style>
 body {
   margin: 0;
-  overflow: hidden;
 }
 .vs-navbar-content {
   background: #212529 !important;
