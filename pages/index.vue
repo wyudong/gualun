@@ -255,4 +255,12 @@ body {
 .vs-input-content {
   margin: 10px 0px;
 }
+@media (max-width: 600px) {
+  .vs-notification {
+    padding: 20px !important;
+  }
+  .vs-notification__content__text p {
+    font-size: 14px;
+  }
+}
 </style>
