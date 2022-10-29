@@ -131,6 +131,15 @@ export default {
       }
     }
   },
+  created () {
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    window.addEventListener('beforeunload', async () => {
+      await fetch('/api/auto/disable', {
+        method: 'POST',
+        keepalive: true
+      })
+    })
+  },
   methods: {
     async handleTotem () {
       try {
@@ -201,7 +210,7 @@ export default {
       this.$vs.notification({
         position: 'top-right',
         color: '#090909',
-        duration: 1500,
+        duration: 2000,
         title: '🥳',
         text
       })

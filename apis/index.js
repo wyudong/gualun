@@ -25,6 +25,11 @@ app.post('/totem/auto', (req, res) => {
   totemAuto(status)
   res.send('ok')
 })
+app.post('/auto/disable', (req, res) => {
+  totemAuto(false)
+  fireAuto(false)
+  res.send('ok')
+})
 app.post('/rebirth', (req, res) => {
   rebirth()
   res.send('ok')
