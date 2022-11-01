@@ -59,7 +59,13 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      name: '挂轮',
+      short_name: '挂轮',
+      description: '一天不练级就一天没长进',
+      lang: 'zh'
+    },
+    icon: {
+      source: 'static/icon.png'
     }
   },
 
