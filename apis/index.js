@@ -9,7 +9,7 @@ const { sos } = require('../actions/sos')
 const { home } = require('../actions/home')
 
 app.use(bodyParser.json())
-app.use(morgan('tiny'))
+app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time ms'))
 
 app.post('/fire', (req, res) => {
   fire()
