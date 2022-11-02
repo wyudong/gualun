@@ -41,7 +41,7 @@
         </vs-switch>
       </div>
       <p class="hint">
-        启用自动后，燃烧 30 分钟一次
+        启用自动后，燃烧 30 分钟一次（慎用！）
       </p>
       <vs-button
         border
