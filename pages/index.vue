@@ -2,7 +2,7 @@
   <div>
     <vs-navbar center-collapsed>
       <template #left>
-        <img src="favicon.ico">
+        <img style="width: 16px;" src="icon32.png">
       </template>
       <template #right>
         <img style="width: 16px;" src="meso.png">
