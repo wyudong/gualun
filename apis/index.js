@@ -19,7 +19,10 @@ console.log(`access: ${accessCode}`)
 app.use(bodyParser.json())
 app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time ms'))
 app.use((req, res, next) => {
-  if (req.headers['x-access'] && req.headers['x-access'] === global.accessCode) next()
+  if (req.headers['x-access'] && req.headers['x-access'] === global.accessCode) {
+    next()
+    return
+  }
   res.sendStatus(401)
 })
 
