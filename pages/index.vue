@@ -4,6 +4,10 @@
       <template #left>
         <img src="favicon.ico">
       </template>
+      <template #right>
+        <img style="width: 16px;" src="meso.png">
+        <span class="pricing">费用：每小时 3.5 元或 1e 枫</span>
+      </template>
     </vs-navbar>
 
     <div class="container">
@@ -264,6 +268,11 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.pricing {
+  margin: 0 7px;
+  color: #868e96;
+  font-size: 12px;
 }
 .hint {
   margin: 5px 0 15px;
