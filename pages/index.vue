@@ -11,6 +11,15 @@
     </vs-navbar>
 
     <div class="container">
+      <div class="code-wrapper">
+        <vs-input
+          v-model="accessCode"
+          label="访问代码"
+          state="success"
+          success
+        />
+      </div>
+      <hr>
       <div class="row-wrapper">
         <vs-button
           border
@@ -96,6 +105,7 @@ export default {
   name: 'IndexPage',
   data () {
     return {
+      accessCode: null,
       buttonDisabled: false,
       autoToTem: false,
       autoFire: false
@@ -112,7 +122,7 @@ export default {
         this.buttonDisabled = true
         await this.$axios.post('/api/totem/auto', {
           status
-        })
+        }, { headers: { 'x-access': this.accessCode } })
         if (status) {
           this.openNotification('启用自动轮回')
         } else {
@@ -131,7 +141,7 @@ export default {
         this.buttonDisabled = true
         await this.$axios.post('/api/fire/auto', {
           status
-        })
+        }, { headers: { 'x-access': this.accessCode } })
         if (status) {
           this.openNotification('启用自动燃烧')
         } else {
@@ -159,7 +169,7 @@ export default {
     async handleTotem () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/totem')
+        await this.$axios.post('/api/totem', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('轮回放置成功')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -172,7 +182,7 @@ export default {
     async handleFire () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/fire')
+        await this.$axios.post('/api/fire', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('烧来了')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -185,7 +195,7 @@ export default {
     async handleRebirth () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/rebirth')
+        await this.$axios.post('/api/rebirth', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('起死回生？')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -198,7 +208,7 @@ export default {
     async handleTeleport () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/teleport')
+        await this.$axios.post('/api/teleport', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('瞬移成功')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -211,7 +221,7 @@ export default {
     async handleSOS () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/sos')
+        await this.$axios.post('/api/sos', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('全屏清怪启动')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -224,7 +234,7 @@ export default {
     async handleHome () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/home')
+        await this.$axios.post('/api/home', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('收工回城')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -262,6 +272,15 @@ body {
   min-height: 100vh;
   padding: 20px;
   background: #212529;
+}
+.code-wrapper {
+
+}
+hr {
+  border: 0;
+  height: 1px;
+  width: 80%;
+  background-image: linear-gradient(to right, rgba(64, 64, 64, 0), rgba(64, 64, 64, 0.75), rgba(64, 64, 64, 0));
 }
 .row-wrapper {
   display: flex;
