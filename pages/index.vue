@@ -14,6 +14,7 @@
       <div class="code-wrapper">
         <vs-input
           v-model="accessCode"
+          type="password"
           label="访问代码"
           state="success"
           success
