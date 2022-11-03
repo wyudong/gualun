@@ -16,6 +16,8 @@ const accessCode = randomstring.generate({
 global.accessCode = accessCode
 console.log(`access: ${accessCode}`)
 
+app.enable("trust proxy")
+
 app.use(bodyParser.json())
 app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time ms'))
 app.use((req, res, next) => {
