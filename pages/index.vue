@@ -384,6 +384,9 @@ hr {
     font-size: 14px;
   }
 }
+.vs-dialog {
+  background: #e0e0e0;
+}
 .dialog-form {
   display: flex;
   align-items: center;
