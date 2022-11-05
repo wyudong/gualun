@@ -8,6 +8,7 @@ const { rebirth } = require('../actions/rebirth')
 const { teleport } = require('../actions/teleport')
 const { sos } = require('../actions/sos')
 const { home } = require('../actions/home')
+const { channel } = require('../actions/channel')
 
 const accessCode = randomstring.generate({
   length: 4,
@@ -65,6 +66,11 @@ app.post('/sos', (req, res) => {
 })
 app.post('/home', (req, res) => {
   home()
+  res.send('ok')
+})
+app.post('/channel', (req, res) => {
+  const { from, to } = req.body
+  channel(from, to)
   res.send('ok')
 })
 

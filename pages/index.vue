@@ -97,6 +97,49 @@
       <p class="hint">
         练级结束把我传回安全区
       </p>
+      <vs-button
+        border
+        class="btn-action"
+        :disabled="buttonDisabled"
+        @click="dialogChannel = !dialogChannel"
+      >
+        换线
+      </vs-button>
+      <p class="hint">
+        从频道 A 移动到频道 B
+      </p>
+      <vs-dialog
+        v-model="dialogChannel"
+        blur
+      >
+        <template #header>
+          <h4>分别输入频道数字</h4>
+        </template>
+        <div class="dialog-form">
+          <vs-input
+            v-model="fromChannel"
+            primary
+            placeholder="起点频道"
+          />
+          <vs-input
+            v-model="toChannel"
+            primary
+            placeholder="终点频道"
+          />
+        </div>
+        <template #footer>
+          <div class="dialog-footer">
+            <vs-button
+              border
+              class="btn-action"
+              :disabled="buttonDisabled"
+              @click="handleSwitchChannel"
+            >
+              移动
+            </vs-button>
+          </div>
+        </template>
+      </vs-dialog>
     </div>
   </div>
 </template>
@@ -109,7 +152,10 @@ export default {
       accessCode: null,
       buttonDisabled: false,
       autoToTem: false,
-      autoFire: false
+      autoFire: false,
+      dialogChannel: false,
+      fromChannel: '',
+      toChannel: ''
     }
   },
   head () {
@@ -245,6 +291,23 @@ export default {
         this.buttonDisabled = false
       }
     },
+    async handleSwitchChannel () {
+      try {
+        this.buttonDisabled = true
+        await this.$axios.post('/api/channel',
+          {
+            from: this.fromChannel,
+            to: this.toChannel
+          }, { headers: { 'x-access': this.accessCode } })
+        this.openNotification('有缘千里来相会')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+        this.openNotification('无缘对面不相逢')
+      } finally {
+        this.buttonDisabled = false
+      }
+    },
     openNotification (text) {
       this.$vs.notification({
         position: 'top-right',
@@ -314,5 +377,16 @@ hr {
   .vs-notification__content__text p {
     font-size: 14px;
   }
+}
+.dialog-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 </style>
