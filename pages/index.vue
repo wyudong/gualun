@@ -57,6 +57,18 @@
         border
         class="btn-action"
         :disabled="buttonDisabled"
+        @click="handleHome"
+      >
+        回城
+      </vs-button>
+      <p class="hint">
+        回城后顺便关闭网页或取消自动，不然一直放轮显得我很傻
+      </p>
+      <vs-button
+        border
+        warn
+        class="btn-action"
+        :disabled="buttonDisabled"
         @click="handleRebirth"
       >
         复活
@@ -66,17 +78,19 @@
       </p>
       <vs-button
         border
+        warn
         class="btn-action"
         :disabled="buttonDisabled"
-        @click="handleTeleport"
+        @click="dialogChannel = !dialogChannel"
       >
-        瞬移
+        换线
       </vs-button>
       <p class="hint">
-        随机变换位置（12 秒 CD）
+        从频道 A 移动到频道 B
       </p>
       <vs-button
         border
+        warn
         class="btn-action"
         :disabled="buttonDisabled"
         @click="handleSOS"
@@ -88,26 +102,18 @@
       </p>
       <vs-button
         border
+        warn
         class="btn-action"
         :disabled="buttonDisabled"
-        @click="handleHome"
+        @click="handleTeleport"
       >
-        回城
+        瞬移
       </vs-button>
       <p class="hint">
-        回城后顺便关闭网页或取消自动，不然一直放轮显得我很傻
+        随机变换位置（12 秒 CD）
       </p>
-      <vs-button
-        border
-        class="btn-action"
-        :disabled="buttonDisabled"
-        @click="dialogChannel = !dialogChannel"
-      >
-        换线
-      </vs-button>
-      <p class="hint">
-        从频道 A 移动到频道 B
-      </p>
+
+      <!-- channel dialog -->
       <vs-dialog
         v-model="dialogChannel"
         blur
@@ -118,19 +124,19 @@
         <div class="dialog-form">
           <vs-input
             v-model="fromChannel"
-            primary
+            warn
             placeholder="起点频道"
           />
           <vs-input
             v-model="toChannel"
-            primary
+            warn
             placeholder="终点频道"
           />
         </div>
         <template #footer>
           <div class="dialog-footer">
             <vs-button
-              border
+              warn
               class="btn-action"
               :disabled="buttonDisabled"
               @click="handleSwitchChannel"
