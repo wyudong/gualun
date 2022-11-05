@@ -15,7 +15,7 @@
         <vs-input
           v-model="accessCode"
           type="password"
-          label="访问代码"
+          placeholder="在此输入 3 位数代码"
           state="success"
           success
         />
@@ -155,7 +155,7 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      accessCode: null,
+      accessCode: '',
       buttonDisabled: false,
       autoToTem: false,
       autoFire: false,
