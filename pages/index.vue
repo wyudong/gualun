@@ -62,7 +62,7 @@
         回城
       </vs-button>
       <p class="hint">
-        回城后顺便关闭网页或取消自动，不然一直放轮显得我很傻
+        回城后顺便取消自动或关闭网页，不然一直放轮显得我很傻
       </p>
       <vs-button
         border
@@ -74,7 +74,7 @@
         复活
       </vs-button>
       <p class="hint">
-        如果我死了，烦请使用该项功能
+        如果我死了，请使用该项功能
       </p>
       <vs-button
         border
