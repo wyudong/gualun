@@ -173,7 +173,7 @@ export default {
     async autoToTem (status) {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/totem/auto', {
+        await this.$axios.post('/api/auto/totem', {
           status
         }, { headers: { 'x-access': this.accessCode } })
         if (status) {
@@ -192,7 +192,7 @@ export default {
     async autoFire (status) {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/fire/auto', {
+        await this.$axios.post('/api/auto/fire', {
           status
         }, { headers: { 'x-access': this.accessCode } })
         if (status) {
@@ -212,7 +212,7 @@ export default {
   created () {
     // eslint-disable-next-line nuxt/no-globals-in-created
     window.addEventListener('beforeunload', async () => {
-      await fetch('/api/auto/disable', {
+      await fetch('/api/auto/off', {
         method: 'POST',
         keepalive: true
       })

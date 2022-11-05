@@ -2,8 +2,8 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const randomstring = require('randomstring')
 const app = require('express')()
-const { fire, auto: fireAuto } = require('../actions/fire')
-const { totem, auto: totemAuto } = require('../actions/totem')
+const { fire, auto: autoFire } = require('../actions/fire')
+const { totem, auto: autoTotem } = require('../actions/totem')
 const { rebirth } = require('../actions/rebirth')
 const { teleport } = require('../actions/teleport')
 const { sos } = require('../actions/sos')
@@ -33,23 +33,23 @@ app.post('/fire', (req, res) => {
   fire()
   res.send('ok')
 })
-app.post('/fire/auto', (req, res) => {
+app.post('/auto/fire', (req, res) => {
   const { status } = req.body
-  fireAuto(status)
+  autoFire(status)
   res.send('ok')
 })
 app.post('/totem', (req, res) => {
   totem()
   res.send('ok')
 })
-app.post('/totem/auto', (req, res) => {
+app.post('/auto/totem', (req, res) => {
   const { status } = req.body
-  totemAuto(status)
+  autoTotem(status)
   res.send('ok')
 })
-app.post('/auto/disable', (req, res) => {
-  totemAuto(false)
-  fireAuto(false)
+app.post('/auto/off', (req, res) => {
+  autoTotem(false)
+  autoFire(false)
   res.send('ok')
 })
 app.post('/rebirth', (req, res) => {
