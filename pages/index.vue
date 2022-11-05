@@ -73,7 +73,7 @@
         瞬移
       </vs-button>
       <p class="hint">
-        随机变换位置
+        随机变换位置（12 秒 CD）
       </p>
       <vs-button
         border
@@ -95,7 +95,7 @@
         回城
       </vs-button>
       <p class="hint">
-        练级结束把我传回安全区
+        回城后顺便关闭网页或取消自动，不然一直放轮显得我很傻
       </p>
       <vs-button
         border
