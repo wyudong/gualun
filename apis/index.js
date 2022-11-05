@@ -11,7 +11,7 @@ const { home } = require('../actions/home')
 const { channel } = require('../actions/channel')
 
 const accessCode = randomstring.generate({
-  length: 4,
+  length: 3,
   charset: 'numeric',
 })
 global.accessCode = accessCode
