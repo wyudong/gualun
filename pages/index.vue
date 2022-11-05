@@ -98,7 +98,7 @@
         群攻
       </vs-button>
       <p class="hint">
-        当黑王靠近我后，才推荐施放
+        当黑王靠近我后，才推荐施放（60 秒 CD）
       </p>
       <vs-button
         border
