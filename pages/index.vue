@@ -406,7 +406,7 @@ hr {
   }
 }
 .vs-dialog {
-  background: #e0e0e0;
+  background: #e8e8e8;
 }
 .dialog-form {
   display: flex;
