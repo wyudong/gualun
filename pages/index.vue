@@ -398,6 +398,7 @@ hr {
 }
 .vs-dialog {
   background: #e8e8e8;
+  min-width: 300px;
 }
 .dialog-form {
   display: flex;
