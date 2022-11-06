@@ -5,8 +5,16 @@
         <img style="width: 16px;" src="icon32.png">
       </template>
       <template #right>
+        <vs-button
+          size="mini"
+          style="margin-right: 17px;"
+          flat
+          @click="dialogPayment = !dialogPayment"
+        >
+          微信支付
+        </vs-button>
         <img style="width: 16px;" src="meso.png">
-        <span class="pricing">费用：每小时 3.5 元或 1e 枫</span>
+        <span class="pricing">每小时 3.5 元或 1e 枫</span>
       </template>
     </vs-navbar>
 
@@ -113,6 +121,18 @@
         随机变换位置（12 秒 CD）
       </p>
 
+      <!-- payment dialog -->
+      <vs-dialog
+        v-model="dialogPayment"
+        auto-width
+        not-padding
+        blur
+      >
+        <div class="dialog-payment">
+          <img src="/payment.png" alt="wechat-payment-qr">
+        </div>
+      </vs-dialog>
+
       <!-- channel dialog -->
       <vs-dialog
         v-model="dialogChannel"
@@ -159,6 +179,7 @@ export default {
       buttonDisabled: false,
       autoToTem: false,
       autoFire: false,
+      dialogPayment: false,
       dialogChannel: false,
       fromChannel: '',
       toChannel: ''
@@ -397,5 +418,10 @@ hr {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.dialog-payment img {
+  display: block;
+  position: relative;
+  max-width: 300px;
 }
 </style>
