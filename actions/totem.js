@@ -22,11 +22,9 @@ module.exports.auto = (status) => {
       console.log(`press ${KEY_TOTEM} repeatedly`)
     }, INTERVAL_TOTEM)
     console.log('totem auto on')
-  } else {
-    if (fs.existsSync(path)) {
-      fs.unlinkSync(path)
-      clearInterval(global.totemInterval)
-      console.log('totem auto off')
-    }
+  } else if (fs.existsSync(path)) {
+    fs.unlinkSync(path)
+    clearInterval(global.totemInterval)
+    console.log('totem auto off')
   }
 }

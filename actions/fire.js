@@ -22,11 +22,9 @@ module.exports.auto = (status) => {
       console.log(`press ${KEY_FIRE} repeatedly`)
     }, INTERVAL_FIRE)
     console.log('fire auto on')
-  } else {
-    if (fs.existsSync(path)) {
-      fs.unlinkSync(path)
-      clearInterval(global.fireInterval)
-      console.log('fire auto off')
-    }
+  } else if (fs.existsSync(path)) {
+    fs.unlinkSync(path)
+    clearInterval(global.fireInterval)
+    console.log('fire auto off')
   }
 }

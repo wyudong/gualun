@@ -12,12 +12,12 @@ const { channel } = require('../actions/channel')
 
 const accessCode = randomstring.generate({
   length: 3,
-  charset: 'numeric',
+  charset: 'numeric'
 })
 global.accessCode = accessCode
 console.log(`access: ${accessCode}`)
 
-app.enable("trust proxy")
+app.enable('trust proxy')
 
 app.use(bodyParser.json())
 app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time ms'))

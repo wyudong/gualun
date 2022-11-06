@@ -53,7 +53,7 @@ export default {
   },
 
   serverMiddleware: [
-    { path: '/api', handler: '~/apis/index.js' },
+    { path: '/api', handler: '~/apis/index.js' }
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

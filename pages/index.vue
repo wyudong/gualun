@@ -203,7 +203,6 @@ export default {
           this.openNotification('停用自动轮回')
         }
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('自动轮回出错')
       } finally {
@@ -222,7 +221,6 @@ export default {
           this.openNotification('停用自动燃烧')
         }
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('自动燃烧出错')
       } finally {
@@ -246,7 +244,6 @@ export default {
         await this.$axios.post('/api/totem', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('轮回放置成功')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('轮回放置失败')
       } finally {
@@ -259,7 +256,6 @@ export default {
         await this.$axios.post('/api/fire', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('烧来了')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('烧出问题了')
       } finally {
@@ -272,7 +268,6 @@ export default {
         await this.$axios.post('/api/rebirth', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('起死回生？')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('见死不救')
       } finally {
@@ -285,7 +280,6 @@ export default {
         await this.$axios.post('/api/teleport', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('瞬移成功')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('瞬移失败')
       } finally {
@@ -298,7 +292,6 @@ export default {
         await this.$axios.post('/api/sos', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('全屏清怪启动')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('没力气打怪了')
       } finally {
@@ -311,7 +304,6 @@ export default {
         await this.$axios.post('/api/home', null, { headers: { 'x-access': this.accessCode } })
         this.openNotification('收工回城')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('下班也回不了家')
       } finally {
@@ -328,7 +320,6 @@ export default {
           }, { headers: { 'x-access': this.accessCode } })
         this.openNotification('有缘千里来相会')
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(e)
         this.openNotification('无缘对面不相逢')
       } finally {

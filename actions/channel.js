@@ -9,9 +9,15 @@ module.exports.channel = (from, to) => {
   console.log(`channel ${from} to ${to}`)
   from = parseInt(from, 10)
   to = parseInt(to, 10)
-  if (from === to) return
-  if (from < CHANNEL_MIN || from > CHANNEL_MAX) return
-  if (to < CHANNEL_MIN || to > CHANNEL_MAX) return
+  if (from === to) {
+    return
+  }
+  if (from < CHANNEL_MIN || from > CHANNEL_MAX) {
+    return
+  }
+  if (to < CHANNEL_MIN || to > CHANNEL_MAX) {
+    return
+  }
 
   // open menu
   robot.keyTap(KEY_ESCAPE)
