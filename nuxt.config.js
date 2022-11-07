@@ -24,6 +24,12 @@ export default {
 
   loading: false,
 
+  loadingIndicator: {
+    name: 'folding-cube',
+    color: '#0c8599',
+    background: '#212529'
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/vuesax'
