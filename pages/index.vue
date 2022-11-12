@@ -194,9 +194,7 @@ export default {
     async autoToTem (status) {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/auto/totem', {
-          status
-        }, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/auto/totem', { status })
         if (status) {
           this.openNotification('启用自动轮回')
         } else {
@@ -212,9 +210,7 @@ export default {
     async autoFire (status) {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/auto/fire', {
-          status
-        }, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/auto/fire', { status })
         if (status) {
           this.openNotification('启用自动燃烧')
         } else {
@@ -238,10 +234,13 @@ export default {
     })
   },
   methods: {
+    async postApi (url, data) {
+      await this.$axios.post(url, data, { headers: { 'x-access': this.accessCode } })
+    },
     async handleTotem () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/totem', null, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/totem', null)
         this.openNotification('轮回放置成功')
       } catch (e) {
         console.log(e)
@@ -253,7 +252,7 @@ export default {
     async handleFire () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/fire', null, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/fire', null)
         this.openNotification('烧来了')
       } catch (e) {
         console.log(e)
@@ -265,7 +264,7 @@ export default {
     async handleRebirth () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/rebirth', null, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/rebirth', null)
         this.openNotification('起死回生？')
       } catch (e) {
         console.log(e)
@@ -277,7 +276,7 @@ export default {
     async handleTeleport () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/teleport', null, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/teleport', null)
         this.openNotification('瞬移成功')
       } catch (e) {
         console.log(e)
@@ -289,7 +288,7 @@ export default {
     async handleSOS () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/sos', null, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/sos', null)
         this.openNotification('全屏清怪启动')
       } catch (e) {
         console.log(e)
@@ -301,7 +300,7 @@ export default {
     async handleHome () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/home', null, { headers: { 'x-access': this.accessCode } })
+        await this.postApi('/api/home', null)
         this.openNotification('收工回城')
       } catch (e) {
         console.log(e)
@@ -313,11 +312,11 @@ export default {
     async handleSwitchChannel () {
       try {
         this.buttonDisabled = true
-        await this.$axios.post('/api/channel',
+        await this.postApi('/api/channel',
           {
             from: this.fromChannel,
             to: this.toChannel
-          }, { headers: { 'x-access': this.accessCode } })
+          })
         this.openNotification('有缘千里来相会')
       } catch (e) {
         console.log(e)
