@@ -202,7 +202,7 @@ export default {
         }
       } catch (e) {
         console.log(e)
-        this.openNotification('自动轮回出错')
+        this.openNotification('自动轮回出错', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -218,7 +218,7 @@ export default {
         }
       } catch (e) {
         console.log(e)
-        this.openNotification('自动燃烧出错')
+        this.openNotification('自动燃烧出错', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -244,7 +244,7 @@ export default {
         this.openNotification('轮回放置成功')
       } catch (e) {
         console.log(e)
-        this.openNotification('轮回放置失败')
+        this.openNotification('轮回放置失败', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -256,7 +256,7 @@ export default {
         this.openNotification('烧来了')
       } catch (e) {
         console.log(e)
-        this.openNotification('烧出问题了')
+        this.openNotification('烧没好', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -265,10 +265,10 @@ export default {
       try {
         this.buttonDisabled = true
         await this.postApi('/api/rebirth', null)
-        this.openNotification('起死回生？')
+        this.openNotification('我起死回生')
       } catch (e) {
         console.log(e)
-        this.openNotification('见死不救')
+        this.openNotification('你见死不救', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -280,7 +280,7 @@ export default {
         this.openNotification('瞬移成功')
       } catch (e) {
         console.log(e)
-        this.openNotification('瞬移失败')
+        this.openNotification('瞬移失败', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -292,7 +292,7 @@ export default {
         this.openNotification('全屏清怪启动')
       } catch (e) {
         console.log(e)
-        this.openNotification('没力气打怪了')
+        this.openNotification('技能还没有准备好', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -301,10 +301,10 @@ export default {
       try {
         this.buttonDisabled = true
         await this.postApi('/api/home', null)
-        this.openNotification('收工回城')
+        this.openNotification('收工回家')
       } catch (e) {
         console.log(e)
-        this.openNotification('下班也回不了家')
+        this.openNotification('下班也回不了家', 'error')
       } finally {
         this.buttonDisabled = false
       }
@@ -320,17 +320,18 @@ export default {
         this.openNotification('有缘千里来相会')
       } catch (e) {
         console.log(e)
-        this.openNotification('无缘对面不相逢')
+        this.openNotification('无缘对面不相逢', 'error')
       } finally {
         this.buttonDisabled = false
       }
     },
-    openNotification (text) {
+    openNotification (text, type) {
+      const title = type === 'error' ? '😢 很遗憾' : '🥳 一切就绪'
       this.$vs.notification({
         position: 'top-right',
         color: '#090909',
         duration: 2000,
-        title: '🥳',
+        title,
         text
       })
     }
