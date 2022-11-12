@@ -17,5 +17,8 @@ module.exports = {
   POS_REBIRTH_1920: { x: 917, y: 610 },
   POS_REBIRTH_1366: { x: 643, y: 480 },
   CHANNEL_MIN: 1,
-  CHANNEL_MAX: 30
+  CHANNEL_MAX: 30,
+  FIRE_DESKTOP: 'fire-desktop.png',
+  FIRE_SAMPLE: 'fire-sample.png',
+  FIRE_STANDARD: 'fire-standard.png'
 }

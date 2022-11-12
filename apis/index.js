@@ -29,9 +29,9 @@ app.use((req, res, next) => {
   res.sendStatus(401)
 })
 
-app.post('/fire', (req, res) => {
-  fire()
-  res.send('ok')
+app.post('/fire', async (req, res) => {
+  const result = await fire()
+  res.send(result)
 })
 app.post('/auto/fire', (req, res) => {
   const { status } = req.body

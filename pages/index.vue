@@ -202,7 +202,7 @@ export default {
         }
       } catch (e) {
         console.log(e)
-        this.openNotification('自动轮回出错', 'error')
+        this.openNotification('自动轮回出错', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -218,7 +218,7 @@ export default {
         }
       } catch (e) {
         console.log(e)
-        this.openNotification('自动燃烧出错', 'error')
+        this.openNotification('自动燃烧出错', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -235,7 +235,7 @@ export default {
   },
   methods: {
     async postApi (url, data) {
-      await this.$axios.post(url, data, { headers: { 'x-access': this.accessCode } })
+      return await this.$axios.post(url, data, { headers: { 'x-access': this.accessCode } })
     },
     async handleTotem () {
       try {
@@ -244,7 +244,7 @@ export default {
         this.openNotification('轮回放置成功')
       } catch (e) {
         console.log(e)
-        this.openNotification('轮回放置失败', 'error')
+        this.openNotification('轮回放置失败', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -252,11 +252,19 @@ export default {
     async handleFire () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/fire', null)
+        const res = await this.postApi('/api/fire', null)
         this.openNotification('烧来了')
+
+        // cooldown is ready
+        if (res.data) {
+          this.openNotification('运气不错，烧有无冷，可以随时使用', {
+            duration: 5000,
+            progress: 'auto'
+          })
+        }
       } catch (e) {
         console.log(e)
-        this.openNotification('烧没好', 'error')
+        this.openNotification('烧没好', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -268,7 +276,7 @@ export default {
         this.openNotification('我起死回生')
       } catch (e) {
         console.log(e)
-        this.openNotification('你见死不救', 'error')
+        this.openNotification('你见死不救', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -280,7 +288,7 @@ export default {
         this.openNotification('瞬移成功')
       } catch (e) {
         console.log(e)
-        this.openNotification('瞬移失败', 'error')
+        this.openNotification('瞬移失败', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -292,7 +300,7 @@ export default {
         this.openNotification('全屏清怪启动')
       } catch (e) {
         console.log(e)
-        this.openNotification('技能还没有准备好', 'error')
+        this.openNotification('技能还没有准备好', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -304,7 +312,7 @@ export default {
         this.openNotification('收工回家')
       } catch (e) {
         console.log(e)
-        this.openNotification('下班也回不了家', 'error')
+        this.openNotification('下班也回不了家', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
@@ -320,17 +328,19 @@ export default {
         this.openNotification('有缘千里来相会')
       } catch (e) {
         console.log(e)
-        this.openNotification('无缘对面不相逢', 'error')
+        this.openNotification('无缘对面不相逢', { type: 'error' })
       } finally {
         this.buttonDisabled = false
       }
     },
-    openNotification (text, type) {
+    openNotification (text, options = {}) {
+      const { type, duration, progress } = options
       const title = type === 'error' ? '😢 很遗憾' : '🥳 一切就绪'
       this.$vs.notification({
+        progress,
         position: 'top-right',
         color: '#090909',
-        duration: 2000,
+        duration: duration || 2000,
         title,
         text
       })
