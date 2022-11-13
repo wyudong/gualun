@@ -11,11 +11,13 @@ module.exports.fire = async () => {
   robot.keyTap(KEY_FIRE)
   console.log(`press ${KEY_FIRE}`)
 
-  if (await isReady()) {
-    return true
-  } else {
-    return false
-  }
+  setTimeout(() => {
+    if (await isReady()) {
+      return true
+    } else {
+      return false
+    }
+  }, 1500)
 }
 
 module.exports.auto = (status) => {
