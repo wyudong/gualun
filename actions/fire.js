@@ -11,13 +11,14 @@ module.exports.fire = async () => {
   robot.keyTap(KEY_FIRE)
   console.log(`press ${KEY_FIRE}`)
 
-  setTimeout(() => {
-    if (await isReady()) {
-      return true
-    } else {
-      return false
-    }
-  }, 1500)
+  // waiting for icon refreshing
+  await new Promise(resolve => setTimeout(resolve, 2000));
+
+  if (await isReady()) {
+    return true
+  } else {
+    return false
+  }
 }
 
 module.exports.auto = (status) => {
