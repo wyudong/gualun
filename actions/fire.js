@@ -12,7 +12,7 @@ module.exports.fire = async () => {
   console.log(`press ${KEY_FIRE}`)
 
   // waiting for icon refreshing
-  await new Promise(resolve => setTimeout(resolve, 2000));
+  await new Promise(resolve => setTimeout(resolve, 2000))
 
   if (await isReady()) {
     return true
