@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const randomstring = require('randomstring')
+const rateLimit = require('express-rate-limit')
 const app = require('express')()
 const { fire, auto: autoFire } = require('../actions/fire')
 const { totem, auto: autoTotem } = require('../actions/totem')
@@ -19,8 +20,16 @@ console.log(`access: ${accessCode}`)
 
 app.enable('trust proxy')
 
-app.use(bodyParser.json())
+const limiter = rateLimit({
+  windowMs: 10 * 1000, // 10 sec
+  max: 4, // limit each IP to 4 requests per window
+  standardHeaders: false,
+  legacyHeaders: false
+})
+
 app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time ms'))
+app.use(limiter)
+app.use(bodyParser.json())
 app.use((req, res, next) => {
   if (req.headers['x-access'] && req.headers['x-access'] === global.accessCode) {
     next()
