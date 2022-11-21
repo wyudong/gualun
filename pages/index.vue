@@ -345,9 +345,11 @@ export default {
       }
     },
     async fetchFireStatus () {
-      const res = await this.getApi('/api/fire/status')
-      const { data } = res
-      this.fireStatus = `data:image/png;base64,${data}`
+      try {
+        const res = await this.getApi('/api/fire/status')
+        const { data } = res
+        this.fireStatus = `data:image/png;base64,${data}`
+      } catch (e) {}
     },
     openNotification (text, options = {}) {
       const { type, duration, progress } = options
