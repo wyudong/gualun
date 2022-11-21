@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const randomstring = require('randomstring')
 const rateLimit = require('express-rate-limit')
 const app = require('express')()
-const { fire, auto: autoFire } = require('../actions/fire')
+const { fire, auto: autoFire, status: fireStatus } = require('../actions/fire')
 const { totem, auto: autoTotem } = require('../actions/totem')
 const { rebirth } = require('../actions/rebirth')
 const { teleport } = require('../actions/teleport')
@@ -38,14 +38,18 @@ app.use((req, res, next) => {
   res.sendStatus(401)
 })
 
-app.post('/fire', async (req, res) => {
-  const result = await fire()
-  res.send(result)
+app.post('/fire', (req, res) => {
+  fire()
+  res.send('ok')
 })
 app.post('/auto/fire', (req, res) => {
   const { status } = req.body
   autoFire(status)
   res.send('ok')
+})
+app.get('/fire/status', async (req, res) => {
+  const status = await fireStatus()
+  res.send(status)
 })
 app.post('/totem', (req, res) => {
   totem()

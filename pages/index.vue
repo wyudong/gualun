@@ -57,6 +57,9 @@
         <vs-switch v-model="autoFire">
           自动
         </vs-switch>
+        <div class="fire-status">
+          <img :src="fireStatus">
+        </div>
       </div>
       <p class="hint">
         启用自动后，燃烧 30 分钟一次（慎用！）
@@ -182,7 +185,8 @@ export default {
       dialogPayment: false,
       dialogChannel: false,
       fromChannel: '',
-      toChannel: ''
+      toChannel: '',
+      fireStatus: null
     }
   },
   head () {
@@ -232,8 +236,20 @@ export default {
         keepalive: true
       })
     })
+
+    // check fire cooldown every minute
+    setInterval(async () => {
+      const d = new Date()
+      const s = d.getSeconds()
+      if (s < 10) {
+        await this.fetchFireStatus()
+      }
+    }, 1000 * 10)
   },
   methods: {
+    async getApi (url) {
+      return await this.$axios.get(url, { headers: { 'x-access': this.accessCode } })
+    },
     async postApi (url, data) {
       return await this.$axios.post(url, data, { headers: { 'x-access': this.accessCode } })
     },
@@ -252,16 +268,11 @@ export default {
     async handleFire () {
       try {
         this.buttonDisabled = true
-        const res = await this.postApi('/api/fire', null)
+        await this.postApi('/api/fire', null)
+        setTimeout(async () => {
+          await this.fetchFireStatus()
+        }, 3000)
         this.openNotification('烧来了')
-
-        // cooldown is ready
-        if (res.data) {
-          this.openNotification('运气不错，烧有无冷，可以随时使用', {
-            duration: 5000,
-            progress: 'auto'
-          })
-        }
       } catch (e) {
         console.log(e)
         this.openNotification('烧没好', { type: 'error' })
@@ -333,6 +344,11 @@ export default {
         this.buttonDisabled = false
       }
     },
+    async fetchFireStatus () {
+      const res = await this.getApi('/api/fire/status')
+      const { data } = res
+      this.fireStatus = `data:image/png;base64,${data}`
+    },
     openNotification (text, options = {}) {
       const { type, duration, progress } = options
       const title = type === 'error' ? '😢 很遗憾' : '🥳 一切就绪'
@@ -375,10 +391,19 @@ hr {
   background-image: linear-gradient(to right, rgba(64, 64, 64, 0), rgba(64, 64, 64, 0.75), rgba(64, 64, 64, 0));
 }
 .row-wrapper {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.fire-status {
+  position: absolute;
+  left: -30px;
+  top: 6px;
+}
+.fire-status img {
+  image-rendering: pixelated;
 }
 .pricing {
   margin: 0 7px;

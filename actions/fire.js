@@ -10,15 +10,6 @@ const path = `./${FLAG_FIRE}`
 module.exports.fire = async () => {
   robot.keyTap(KEY_FIRE)
   console.log(`press ${KEY_FIRE}`)
-
-  // waiting for icon refreshing
-  await new Promise(resolve => setTimeout(resolve, 2000))
-
-  if (await isReady()) {
-    return true
-  } else {
-    return false
-  }
 }
 
 module.exports.auto = (status) => {
@@ -38,6 +29,15 @@ module.exports.auto = (status) => {
     clearInterval(global.fireInterval)
     console.log('fire auto off')
   }
+}
+
+module.exports.status = async () => {
+  await takeScreenshot(FIRE_DESKTOP)
+  const desktop = await Jimp.read(FIRE_DESKTOP)
+  const { width, height } = desktop.bitmap
+  await desktop.crop(width - 35, height - 80, 32, 32).writeAsync(FIRE_SAMPLE)
+  const bitmap = fs.readFileSync(FIRE_SAMPLE);
+  return new Buffer(bitmap).toString('base64');
 }
 
 function takeScreenshot (dst) {
