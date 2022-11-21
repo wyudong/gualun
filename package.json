@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "rm -f .totem && rm -f .fire && nuxt",
+    "dev": "npm run clean && nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "clean": "rm -f .totem && rm -f .fire",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "yarn lint:js",
     "lintfix": "yarn lint:js --fix"
@@ -21,6 +22,7 @@
     "jimp": "^0.16.2",
     "morgan": "^1.10.0",
     "nuxt": "^2.15.8",
+    "pixelmatch": "^5.3.0",
     "randomstring": "^1.2.3",
     "robotjs": "^0.6.0",
     "screenshot-desktop": "^1.12.7",
