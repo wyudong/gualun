@@ -23,9 +23,8 @@
         <vs-input
           v-model="accessCode"
           type="password"
-          placeholder="在此输入 3 位数代码"
-          state="success"
-          success
+          placeholder="输入 3 位数代码"
+          :state="accessCodeState"
         />
       </div>
       <hr>
@@ -179,14 +178,15 @@ export default {
   data () {
     return {
       accessCode: '',
+      accessCodeState: 'warn',
       buttonDisabled: false,
       autoToTem: false,
       autoFire: false,
+      fireStatus: null,
       dialogPayment: false,
       dialogChannel: false,
       fromChannel: '',
-      toChannel: '',
-      fireStatus: null
+      toChannel: ''
     }
   },
   head () {
@@ -195,6 +195,13 @@ export default {
     }
   },
   watch: {
+    accessCode (code) {
+      if (code.length === 3) {
+        this.debounceCheckCode()
+      } else {
+        this.accessCodeState = 'warn'
+      }
+    },
     async autoToTem (status) {
       try {
         this.buttonDisabled = true
@@ -252,6 +259,19 @@ export default {
     },
     async postApi (url, data) {
       return await this.$axios.post(url, data, { headers: { 'x-access': this.accessCode } })
+    },
+    debounceCheckCode () {
+      if (this.timeout) {
+        clearTimeout(this.timeout)
+      }
+      this.timeout = setTimeout(async () => {
+        try {
+          await this.getApi('api/ping')
+          this.accessCodeState = 'success'
+        } catch (e) {
+          this.accessCodeState = 'danger'
+        }
+      }, 300)
     },
     async handleTotem () {
       try {

@@ -38,6 +38,9 @@ app.use((req, res, next) => {
   res.sendStatus(401)
 })
 
+app.get('/ping', (req, res) => {
+  res.send('pong')
+})
 app.post('/fire', (req, res) => {
   fire()
   res.send('ok')
