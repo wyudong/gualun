@@ -140,7 +140,7 @@
         blur
       >
         <div class="dialog-payment">
-          <img src="/payment.png" alt="wechat-payment-qr">
+          <img src="payment.png" alt="wechat-payment-qr">
         </div>
       </vs-dialog>
 
