@@ -409,6 +409,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  margin-top: 20px;
   padding: 20px;
   background: #212529;
 }
