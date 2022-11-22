@@ -19,14 +19,13 @@
     </vs-navbar>
 
     <div class="container">
-      <div class="code-wrapper">
-        <vs-input
-          v-model="accessCode"
-          type="password"
-          placeholder="输入 3 位数代码"
-          :state="accessCodeState"
-        />
-      </div>
+      <vs-input
+        v-model="accessCode"
+        class="code-input"
+        type="password"
+        placeholder="输入 3 位数代码"
+        :state="accessCodeState"
+      />
       <hr>
       <div class="row-wrapper">
         <vs-button
@@ -38,7 +37,12 @@
           轮回
         </vs-button>
         <vs-switch v-model="autoToTem">
-          自动
+          <template #off>
+            自动／关
+          </template>
+          <template #on>
+            自动／开
+          </template>
         </vs-switch>
       </div>
       <p class="hint">
@@ -54,7 +58,12 @@
           燃烧
         </vs-button>
         <vs-switch v-model="autoFire">
-          自动
+          <template #off>
+            自动／关
+          </template>
+          <template #on>
+            自动／开
+          </template>
         </vs-switch>
         <div class="fire-status">
           <img :src="fireStatus">
@@ -178,7 +187,7 @@ export default {
   data () {
     return {
       accessCode: '',
-      accessCodeState: 'warn',
+      accessCodeState: 'dark',
       buttonDisabled: false,
       autoToTem: false,
       autoFire: false,
@@ -199,7 +208,7 @@ export default {
       if (code.length === 3) {
         this.debounceCheckCode()
       } else {
-        this.accessCodeState = 'warn'
+        this.accessCodeState = 'dark'
       }
     },
     async autoToTem (status) {
@@ -403,8 +412,11 @@ body {
   padding: 20px;
   background: #212529;
 }
-.code-wrapper {
-
+.code-input .vs-input {
+  width: 118px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
 }
 hr {
   border: 0;
@@ -418,6 +430,9 @@ hr {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.vs-switch {
+  background: #868e96;
 }
 .fire-status {
   position: absolute;
