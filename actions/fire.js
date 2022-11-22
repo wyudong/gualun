@@ -7,7 +7,7 @@ const config = require('./config')
 const { KEY_FIRE, INTERVAL_FIRE, FLAG_FIRE, FIRE_DESKTOP, FIRE_SAMPLE, FIRE_STANDARD } = config
 const path = `./${FLAG_FIRE}`
 
-module.exports.fire = async () => {
+module.exports.fire = () => {
   robot.keyTap(KEY_FIRE)
   console.log(`press ${KEY_FIRE}`)
 }
@@ -36,8 +36,8 @@ module.exports.status = async () => {
   const desktop = await Jimp.read(FIRE_DESKTOP)
   const { width, height } = desktop.bitmap
   await desktop.crop(width - 35, height - 80, 32, 32).writeAsync(FIRE_SAMPLE)
-  const bitmap = fs.readFileSync(FIRE_SAMPLE);
-  return new Buffer(bitmap).toString('base64');
+  const b64 = fs.readFileSync(FIRE_SAMPLE, 'base64')
+  return b64
 }
 
 function takeScreenshot (dst) {
@@ -53,7 +53,7 @@ function takeScreenshot (dst) {
   })
 }
 
-/* eslint-disable-next-line  require-await */
+/* eslint-disable-next-line require-await */
 async function isReady () {
   try {
     await takeScreenshot(FIRE_DESKTOP)
