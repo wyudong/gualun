@@ -10,6 +10,9 @@ const { teleport } = require('../actions/teleport')
 const { sos } = require('../actions/sos')
 const { home } = require('../actions/home')
 const { channel } = require('../actions/channel')
+const { list, goto } = require('../actions/map')
+
+const allowlist = ['/maps']
 
 const accessCode = randomstring.generate({
   length: 3,
@@ -31,9 +34,11 @@ app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time 
 app.use(limiter)
 app.use(bodyParser.json())
 app.use((req, res, next) => {
+  if (allowlist.includes(req.path)) {
+    return next()
+  }
   if (req.headers['x-access'] && req.headers['x-access'] === global.accessCode) {
-    next()
-    return
+    return next()
   }
   res.sendStatus(401)
 })
@@ -74,6 +79,15 @@ app.post('/rebirth', (req, res) => {
 })
 app.post('/teleport', (req, res) => {
   teleport()
+  res.send('ok')
+})
+app.get('/maps', (req, res) => {
+  const data = list()
+  res.json(data)
+})
+app.post('/goto', (req, res) => {
+  const { destination } = req.body
+  goto(destination)
   res.send('ok')
 })
 app.post('/sos', (req, res) => {

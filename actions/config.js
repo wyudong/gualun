@@ -10,6 +10,7 @@ module.exports = {
   KEY_LEFT: 'left',
   KEY_RIGHT: 'right',
   KEY_ENTER: 'enter',
+  KEY_MAP: 'm',
   INTERVAL_TOTEM: 60 * 1000 * 5,
   INTERVAL_FIRE: 60 * 1000 * 30,
   FLAG_TOTEM: '.totem',

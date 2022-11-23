@@ -107,6 +107,44 @@
       <p class="hint">
         从频道 A 移动到频道 B
       </p>
+      <div class="row-wrapper">
+        <vs-select
+          v-if="maps.length"
+          v-model="destination"
+          class="map-select"
+          state="dark"
+          placeholder="练级地图"
+        >
+          <vs-option-group
+            v-for="(map, i) in maps"
+            :key="i"
+          >
+            <div slot="title">
+              {{ map.group }}
+            </div>
+            <vs-option
+              v-for="(place, index) in map.places"
+              :key="index"
+              :label="place.name"
+              :value="place.name"
+            >
+              {{ place.name }}
+            </vs-option>
+          </vs-option-group>
+        </vs-select>
+        <vs-button
+          border
+          warn
+          class="btn-action"
+          :disabled="buttonDisabled || !destination"
+          @click="handleGoToMap"
+        >
+          GO
+        </vs-button>
+      </div>
+      <p class="hint">
+        传送我至练级地图，建议先换线再跑图（实验性功能）
+      </p>
       <vs-button
         border
         warn
@@ -188,6 +226,8 @@ export default {
     return {
       accessCode: '',
       accessCodeState: 'dark',
+      maps: [],
+      destination: '',
       buttonDisabled: false,
       autoToTem: false,
       autoFire: false,
@@ -244,7 +284,7 @@ export default {
       }
     }
   },
-  created () {
+  async created () {
     // eslint-disable-next-line nuxt/no-globals-in-created
     window.addEventListener('beforeunload', async () => {
       await fetch('/api/auto/off', {
@@ -261,6 +301,8 @@ export default {
         await this.fetchFireStatus()
       }
     }, 1000 * 10)
+
+    await this.fetchMaps()
   },
   methods: {
     async getApi (url) {
@@ -281,6 +323,14 @@ export default {
           this.accessCodeState = 'danger'
         }
       }, 300)
+    },
+    async fetchMaps () {
+      try {
+        const { data } = await this.getApi('/api/maps')
+        this.maps = data
+      } catch (e) {
+        console.log(e)
+      }
     },
     async handleTotem () {
       try {
@@ -360,11 +410,10 @@ export default {
     async handleSwitchChannel () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/channel',
-          {
-            from: this.fromChannel,
-            to: this.toChannel
-          })
+        await this.postApi('/api/channel', {
+          from: this.fromChannel,
+          to: this.toChannel
+        })
         this.openNotification('有缘千里来相会')
       } catch (e) {
         console.log(e)
@@ -379,6 +428,20 @@ export default {
         const { data } = res
         this.fireStatus = `data:image/png;base64,${data}`
       } catch (e) {}
+    },
+    async handleGoToMap () {
+      try {
+        this.buttonDisabled = true
+        await this.postApi('/api/goto', {
+          destination: this.destination
+        })
+        this.openNotification('有缘千里来相会')
+      } catch (e) {
+        console.log(e)
+        this.openNotification('无缘对面不相逢', { type: 'error' })
+      } finally {
+        this.buttonDisabled = false
+      }
     },
     openNotification (text, options = {}) {
       const { type, duration, progress } = options
@@ -419,10 +482,26 @@ body {
   padding-right: 15px;
   text-align: center;
 }
+.vs-select {
+  min-height: 33px;
+}
+.vs-select__input {
+  min-height: 33px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.vs-select--state-dark .vs-select__input {
+  background: #383d3f;
+}
+.vs-select--state-dark .vs-select__input:hover {
+  color: #dee2e6;
+}
 hr {
   border: 0;
   height: 1px;
   width: 80%;
+  margin-top: 1px;
+  margin-bottom: 15px;
   background-image: linear-gradient(to right, rgba(64, 64, 64, 0), rgba(64, 64, 64, 0.75), rgba(64, 64, 64, 0));
 }
 .row-wrapper {
