@@ -11,7 +11,7 @@ module.exports = [
     ],
   },
   {
-    group: '飯店阿兒克斯',
+    group: '飯店阿爾克斯',
     places: [
       {
         name: '不法之徒所支配的荒野2',
