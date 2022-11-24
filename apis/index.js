@@ -11,6 +11,7 @@ const { sos } = require('../actions/sos')
 const { home } = require('../actions/home')
 const { channel } = require('../actions/channel')
 const { list, goto } = require('../actions/map')
+const { trade } = require('../actions/trade')
 
 const allowlist = ['/maps']
 
@@ -82,15 +83,6 @@ app.post('/teleport', (req, res) => {
   teleport()
   res.send('ok')
 })
-app.get('/maps', (req, res) => {
-  const data = list()
-  res.json(data)
-})
-app.post('/goto', (req, res) => {
-  const { destination } = req.body
-  goto(destination)
-  res.send('ok')
-})
 app.post('/sos', (req, res) => {
   sos()
   res.send('ok')
@@ -102,6 +94,19 @@ app.post('/home', (req, res) => {
 app.post('/channel', (req, res) => {
   const { from, to } = req.body
   channel(from, to)
+  res.send('ok')
+})
+app.get('/maps', (req, res) => {
+  const data = list()
+  res.json(data)
+})
+app.post('/goto', (req, res) => {
+  const { destination } = req.body
+  goto(destination)
+  res.send('ok')
+})
+app.post('/trade', (req, res) => {
+  trade()
   res.send('ok')
 })
 

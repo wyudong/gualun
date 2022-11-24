@@ -7,6 +7,16 @@
       <template #right>
         <vs-button
           size="mini"
+          style="margin-right: 8px;"
+          flat
+          warn
+          :disabled="buttonDisabled"
+          @click="handleTrade"
+        >
+          游戏交易
+        </vs-button>
+        <vs-button
+          size="mini"
           style="margin-right: 17px;"
           flat
           @click="dialogPayment = !dialogPayment"
@@ -335,7 +345,7 @@ export default {
     async handleTotem () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/totem', null)
+        await this.postApi('/api/totem')
         this.openNotification('轮回放置成功')
       } catch (e) {
         console.log(e)
@@ -347,7 +357,7 @@ export default {
     async handleFire () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/fire', null)
+        await this.postApi('/api/fire')
         setTimeout(async () => {
           await this.fetchFireStatus()
         }, 3000)
@@ -362,7 +372,7 @@ export default {
     async handleRebirth () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/rebirth', null)
+        await this.postApi('/api/rebirth')
         this.openNotification('我起死回生')
       } catch (e) {
         console.log(e)
@@ -374,7 +384,7 @@ export default {
     async handleTeleport () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/teleport', null)
+        await this.postApi('/api/teleport')
         this.openNotification('瞬移成功')
       } catch (e) {
         console.log(e)
@@ -386,7 +396,7 @@ export default {
     async handleSOS () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/sos', null)
+        await this.postApi('/api/sos')
         this.openNotification('全屏清怪启动')
       } catch (e) {
         console.log(e)
@@ -398,7 +408,7 @@ export default {
     async handleHome () {
       try {
         this.buttonDisabled = true
-        await this.postApi('/api/home', null)
+        await this.postApi('/api/home')
         this.openNotification('收工回家')
       } catch (e) {
         console.log(e)
@@ -422,13 +432,6 @@ export default {
         this.buttonDisabled = false
       }
     },
-    async fetchFireStatus () {
-      try {
-        const res = await this.getApi('/api/fire/status')
-        const { data } = res
-        this.fireStatus = `data:image/png;base64,${data}`
-      } catch (e) {}
-    },
     async handleGoToMap () {
       try {
         this.buttonDisabled = true
@@ -442,6 +445,28 @@ export default {
       } finally {
         this.buttonDisabled = false
       }
+    },
+    async handleTrade () {
+      try {
+        this.buttonDisabled = true
+        await this.postApi('/api/trade')
+        this.openNotification('交易即将进行，请于交易窗口打开后的三十秒内放上金额并确认。超时请重新发起交易。', {
+          duration: 30000,
+          progress: 'auto'
+        })
+      } catch (e) {
+        console.log(e)
+        this.openNotification('无法完成交易', { type: 'error' })
+      } finally {
+        this.buttonDisabled = false
+      }
+    },
+    async fetchFireStatus () {
+      try {
+        const res = await this.getApi('/api/fire/status')
+        const { data } = res
+        this.fireStatus = `data:image/png;base64,${data}`
+      } catch (e) {}
     },
     openNotification (text, options = {}) {
       const { type, duration, progress } = options

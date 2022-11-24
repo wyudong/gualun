@@ -4,7 +4,7 @@ const screenshot = require('screenshot-desktop')
 const Jimp = require('jimp')
 const config = require('./config')
 
-const { KEY_FIRE, INTERVAL_FIRE, FLAG_FIRE, FIRE_DESKTOP, FIRE_SAMPLE, FIRE_STANDARD } = config
+const { KEY_FIRE, INTERVAL_FIRE, FLAG_FIRE, FIRE_DESKTOP, FIRE_SAMPLE } = config
 const path = `./${FLAG_FIRE}`
 
 module.exports.fire = () => {
@@ -51,29 +51,4 @@ function takeScreenshot (dst) {
       reject(err)
     })
   })
-}
-
-/* eslint-disable-next-line require-await */
-async function isReady () {
-  try {
-    await takeScreenshot(FIRE_DESKTOP)
-    const desktop = await Jimp.read(FIRE_DESKTOP)
-    const { width, height } = desktop.bitmap
-    await desktop.crop(width - 30, height - 67, 26, 17).writeAsync(FIRE_SAMPLE)
-
-    const sample = await Jimp.read(FIRE_SAMPLE)
-    const standard = await Jimp.read(FIRE_STANDARD)
-    const thresh = 0.1
-    const diff = Jimp.diff(sample, standard, thresh)
-    console.log(`diff=${diff.percent}`)
-
-    if (diff.percent < 0.05) {
-      return true
-    } else {
-      return false
-    }
-  } catch (err) {
-    console.log(err)
-    return false
-  }
 }
