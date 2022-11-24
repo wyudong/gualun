@@ -26,7 +26,7 @@ app.enable('trust proxy')
 const limiter = rateLimit({
   windowMs: 10 * 1000, // 10 sec
   max: 4, // limit each IP to 4 requests per window
-  standardHeaders: false,
+  standardHeaders: true,
   legacyHeaders: false
 })
 
@@ -57,6 +57,7 @@ app.post('/auto/fire', (req, res) => {
 })
 app.get('/fire/status', async (req, res) => {
   const status = await fireStatus()
+  res.setHeader('Last-Modified', (new Date()).toUTCString())
   res.send(status)
 })
 app.post('/totem', (req, res) => {
