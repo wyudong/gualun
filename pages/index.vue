@@ -13,7 +13,7 @@
           :disabled="buttonDisabled"
           @click="handleTrade"
         >
-          游戏交易
+          枫币交易
         </vs-button>
         <vs-button
           size="mini"
@@ -450,7 +450,7 @@ export default {
       try {
         this.buttonDisabled = true
         await this.postApi('/api/trade')
-        this.openNotification('交易即将进行，请于交易窗口打开后的三十秒内放上金额并确认。超时请重新发起交易。', {
+        this.openNotification('请于交易窗口打开后的三十秒内放上金额并确认，超时请重新发起交易。', {
           duration: 30000,
           progress: 'auto'
         })
