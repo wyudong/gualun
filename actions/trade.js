@@ -30,6 +30,7 @@ module.exports.trade = () => {
   setTimeout(() => {
     robot.moveMouse(POS_TRADE_END.x, POS_TRADE_END.y)
     robot.mouseClick('left', false)
+    robot.keyTap('i')
   }, 35000)
 }
 
