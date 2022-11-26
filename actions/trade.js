@@ -25,13 +25,13 @@ module.exports.trade = () => {
   setIntervalX(() => {
     robot.moveMouse(POS_TRADE_CONFIRM.x, POS_TRADE_CONFIRM.y)
     robot.mouseClick('left', false)
-  }, 5000, 6)
+  }, 5000, 5)
 
   setTimeout(() => {
     robot.moveMouse(POS_TRADE_END.x, POS_TRADE_END.y)
     robot.mouseClick('left', false)
     robot.keyTap('i')
-  }, 35000)
+  }, 28000)
 }
 
 function setIntervalX (callback, delay, repetitions) {

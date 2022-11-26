@@ -9,19 +9,18 @@
           size="mini"
           style="margin-right: 8px;"
           flat
-          warn
-          :disabled="buttonDisabled"
-          @click="handleTrade"
+          @click="dialogPaymentWeChat = !dialogPaymentWeChat"
         >
-          枫币交易
+          微信支付
         </vs-button>
         <vs-button
           size="mini"
           style="margin-right: 17px;"
           flat
-          @click="dialogPayment = !dialogPayment"
+          warn
+          @click="dialogPaymentMeso = !dialogPaymentMeso"
         >
-          微信支付
+          枫币交易
         </vs-button>
         <img style="width: 16px;" src="meso.png">
         <span class="pricing">每小时 3.5 元或 1e 枫</span>
@@ -180,9 +179,9 @@
         随机变换位置（12 秒 CD）
       </p>
 
-      <!-- payment dialog -->
+      <!-- payment dialog wechat -->
       <vs-dialog
-        v-model="dialogPayment"
+        v-model="dialogPaymentWeChat"
         auto-width
         not-padding
         blur
@@ -190,6 +189,43 @@
         <div class="dialog-payment">
           <img src="payment.png" alt="wechat-payment-qr">
         </div>
+      </vs-dialog>
+
+      <!-- payment dialog meso -->
+      <vs-dialog
+        v-model="dialogPaymentMeso"
+        width="350px"
+        not-center
+        blur
+      >
+        <template #header>
+          <h4 style="margin: 15px 0 5px 0;">
+            使用方法
+          </h4>
+        </template>
+        <div class="dialog-meso-content">
+          <p>如使用枫币结算，<strong>请先发起交易</strong>，然后点击下方的“开始交易”按钮。</p>
+          <p>请于交易窗口打开后的 30 秒内放上<img src="meso.png">并确认，超时交易将失败。</p>
+          <p>※ 交易的 30 秒期间其它操作可能无效。</p>
+        </div>
+        <template #footer>
+          <div class="dialog-meso-footer">
+            <vs-button
+              transparent
+              warn
+              @click="handleTrade"
+            >
+              开始交易
+            </vs-button>
+            <vs-button
+              transparent
+              color="#bbb"
+              @click="dialogPaymentMeso=false"
+            >
+              取消交易
+            </vs-button>
+          </div>
+        </template>
       </vs-dialog>
 
       <!-- channel dialog -->
@@ -242,7 +278,8 @@ export default {
       autoToTem: false,
       autoFire: false,
       fireStatus: null,
-      dialogPayment: false,
+      dialogPaymentWeChat: false,
+      dialogPaymentMeso: false,
       dialogChannel: false,
       fromChannel: '',
       toChannel: ''
@@ -448,9 +485,10 @@ export default {
     },
     async handleTrade () {
       try {
+        this.dialogPaymentMeso = false
         this.buttonDisabled = true
         await this.postApi('/api/trade')
-        this.openNotification('请于交易窗口打开后的三十秒内放上金额并确认，超时请重新发起交易。', {
+        this.openNotification('请于 30 秒内放上对应金额并确认', {
           duration: 30000,
           progress: 'auto'
         })
@@ -592,5 +630,18 @@ hr {
   display: block;
   position: relative;
   max-width: 300px;
+}
+.dialog-meso-content {
+  font-size: 14px;
+}
+.dialog-meso-content img {
+  vertical-align: middle;
+  width: 16px;
+  margin: 0 2px 4px 2px;
+}
+.dialog-meso-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 </style>
