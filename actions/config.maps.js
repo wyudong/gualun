@@ -1,6 +1,16 @@
 /* eslint-disable comma-dangle */
 module.exports = [
   {
+    group: '夢之都拉契爾恩',
+    places: [
+      {
+        name: '顯露本色之處3',
+        list: { x: 835, y: 657 },
+        map: { x: 546, y: 582 },
+      },
+    ],
+  },
+  {
     group: '月之橋',
     places: [
       {
@@ -14,9 +24,29 @@ module.exports = [
     group: '飯店阿爾克斯',
     places: [
       {
+        name: '賽爾尼溫東邊城牆2',
+        list: { x: 835, y: 237 },
+        map: { x: 582, y: 403 },
+      },
+      {
+        name: '燃燒的王立圖書館5',
+        list: { x: 835, y: 637 },
+        map: { x: 459, y: 300 },
+      },
+      {
+        name: '燃燒的王立圖書館6',
+        list: { x: 835, y: 277 },
+        map: { x: 499, y: 311 },
+      },
+      {
         name: '不法之徒所支配的荒野2',
         list: { x: 835, y: 297 },
         map: { x: 82, y: 614 },
+      },
+      {
+        name: '浪漫日落的汽車戲院5',
+        list: { x: 835, y: 317 },
+        map: { x: 479, y: 434 },
       },
       {
         name: '沒有目的地的橫貫列車2',
