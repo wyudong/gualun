@@ -21,6 +21,21 @@ module.exports = [
     ],
   },
   {
+    group: '利曼',
+    places: [
+      {
+        name: '世界終結之處1-4',
+        list: { x: 835, y: 677 },
+        map: { x: 544, y: 447 },
+      },
+      {
+        name: '世界終結之處1-5',
+        list: { x: 835, y: 697 },
+        map: { x: 580, y: 420 },
+      },
+    ],
+  },
+  {
     group: '飯店阿爾克斯',
     places: [
       {
