@@ -35,6 +35,9 @@
         placeholder="输入 3 位数代码"
         :state="accessCodeState"
       />
+      <p class="hint hint-2">
+        练级前先填入代码
+      </p>
       <hr>
       <div class="row-wrapper">
         <vs-button
@@ -54,7 +57,7 @@
           </template>
         </vs-switch>
       </div>
-      <p class="hint">
+      <p class="hint hint-2">
         启用自动后，轮回 5 分钟一次
       </p>
       <div class="row-wrapper">
@@ -78,7 +81,7 @@
           <img :src="fireStatus">
         </div>
       </div>
-      <p class="hint">
+      <p class="hint hint-2">
         启用自动后，燃烧 30 分钟一次（慎用！）
       </p>
       <vs-button
@@ -89,7 +92,7 @@
       >
         回城
       </vs-button>
-      <p class="hint">
+      <p class="hint hint-2">
         回城后顺便取消自动或关闭网页，不然一直放轮显得我很傻
       </p>
       <vs-button
@@ -594,6 +597,9 @@ hr {
   margin: 5px 0 15px;
   color: #495057;
   font-size: 12px;
+}
+.hint-2 {
+  color: #868e96;
 }
 .btn-action {
   margin-left: 20px;
