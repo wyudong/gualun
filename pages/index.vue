@@ -526,6 +526,12 @@ export default {
 </script>
 
 <style>
+html {
+  -moz-filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+  filter: grayscale(100%);
+}
 body {
   margin: 0;
 }
