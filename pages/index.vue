@@ -119,24 +119,35 @@
       <p class="hint">
         从频道 A 移动到频道 B
       </p>
+      <div class="row-wrapper" style="margin-bottom: 5px;">
+        <vs-radio v-model="mapLevelRangeSelected" val="1" warn>
+          200 以下
+        </vs-radio>
+        <vs-radio v-model="mapLevelRangeSelected" val="2" warn>
+          200 ～ 255
+        </vs-radio>
+        <vs-radio v-model="mapLevelRangeSelected" val="3" warn>
+          255 以上
+        </vs-radio>
+      </div>
       <div class="row-wrapper">
         <vs-select
-          v-if="maps.length"
+          :key="mapLevelRangeSelected"
           v-model="destination"
           class="map-select"
           state="dark"
           placeholder="练级地图"
         >
           <vs-option-group
-            v-for="(map, i) in maps"
-            :key="i"
+            v-for="(map) in mapsFiltered"
+            :key="map.group"
           >
             <div slot="title">
               {{ map.group }}
             </div>
             <vs-option
-              v-for="(place, index) in map.places"
-              :key="index"
+              v-for="(place) in map.places"
+              :key="place.name"
               :label="place.name"
               :value="place.name"
             >
@@ -209,7 +220,7 @@
         <div class="dialog-meso-content">
           <p>如使用枫币结算，<strong>请先发起交易</strong>，然后点击下方的“开始交易”按钮。</p>
           <p>请于交易窗口打开后的 30 秒内放上<img src="meso.png">并确认，超时交易将失败。</p>
-          <p>※ 交易的 30 秒期间其它操作可能无效。</p>
+          <p>※ 交易的 30 秒期间其它操作将无效。</p>
         </div>
         <template #footer>
           <div class="dialog-meso-footer">
@@ -276,6 +287,8 @@ export default {
       accessCode: '',
       accessCodeState: 'dark',
       maps: [],
+      mapsFiltered: [],
+      mapLevelRangeSelected: 0,
       destination: '',
       buttonDisabled: false,
       autoToTem: false,
@@ -332,6 +345,9 @@ export default {
       } finally {
         this.buttonDisabled = false
       }
+    },
+    mapLevelRangeSelected (range) {
+      this.filterMaps(this.mapLevelRangeSelected)
     }
   },
   async created () {
@@ -378,9 +394,16 @@ export default {
       try {
         const { data } = await this.getApi('/api/maps')
         this.maps = data
+        this.mapLevelRangeSelected = 1
       } catch (e) {
         console.log(e)
       }
+    },
+    filterMaps (range) {
+      this.mapsFiltered = this.maps.filter((group) => {
+        /* eslint-disable-next-line eqeqeq */
+        return group.range == range
+      })
     },
     async handleTotem () {
       try {
@@ -562,6 +585,10 @@ body {
 .vs-select--state-dark .vs-select__input:hover {
   color: #dee2e6;
 }
+.vs-radio__label {
+  font-size: 12px;
+  color: #495057;
+}
 hr {
   border: 0;
   height: 1px;
@@ -576,6 +603,9 @@ hr {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.row-wrapper .vs-radio-content {
+  margin-right: 10px;
 }
 .vs-switch {
   background: #868e96;
