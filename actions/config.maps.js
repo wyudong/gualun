@@ -5,7 +5,7 @@ module.exports = [
     range: 1,
     places: [
       {
-        name: '綠樹的藤條',
+        name: '綠樹的藤條（風獨眼獸）',
         list: { x: 835, y: 275 },
         map: { x: 403, y: 392 },
       },
@@ -30,12 +30,17 @@ module.exports = [
         map: { x: 449, y: 571 },
       },
       {
-        name: '沉睡沙漠',
+        name: '沉睡沙漠（地鼠）',
         list: { x: 835, y: 315 },
         map: { x: 341, y: 288 },
       },
       {
-        name: '神木村西邊森林',
+        name: '研究所C2（老頭）',
+        list: { x: 835, y: 315 },
+        map: { x: 535, y: 508 },
+      },
+      {
+        name: '神木村西邊森林（萊西）',
         list: { x: 835, y: 335 },
         map: { x: 375, y: 328 },
       },
