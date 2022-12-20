@@ -100,18 +100,6 @@
         warn
         class="btn-action"
         :disabled="buttonDisabled"
-        @click="handleRebirth"
-      >
-        复活
-      </vs-button>
-      <p class="hint">
-        如果我死了，请使用该项功能
-      </p>
-      <vs-button
-        border
-        warn
-        class="btn-action"
-        :disabled="buttonDisabled"
         @click="dialogChannel = !dialogChannel"
       >
         换线
@@ -167,6 +155,18 @@
       </div>
       <p class="hint">
         传送我至练级地图，建议先回城再换线、跑图（实验性功能）
+      </p>
+      <vs-button
+        border
+        warn
+        class="btn-action"
+        :disabled="buttonDisabled"
+        @click="handleRebirth"
+      >
+        复活
+      </vs-button>
+      <p class="hint">
+        如果我死了，请使用该项功能
       </p>
       <vs-button
         border
