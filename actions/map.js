@@ -31,7 +31,9 @@ module.exports.goto = (name) => {
         robot.mouseClick('left', true)
         robot.moveMouse(map.x, map.y)
         robot.mouseClick('left', true)
-        robot.keyTap(KEY_ENTER)
+        setTimeout(() => {
+          robot.keyTap(KEY_ENTER)
+        }, 500)
       }, 500)
     }
   }
