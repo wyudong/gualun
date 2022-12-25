@@ -29,7 +29,9 @@ module.exports.channel = (from, to) => {
     robot.keyTap(arrow)
   }
   // confirm
-  robot.keyTap(KEY_ENTER)
+  setTimeout(() => {
+    robot.keyTap(KEY_ENTER)
+  }, 500)
 }
 
 function channelsToArrows (from, to) {
