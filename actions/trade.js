@@ -8,6 +8,7 @@ const {
   POS_TRADE_END,
   KEY_ENTER
 } = config
+
 robot.setMouseDelay(500)
 robot.setKeyboardDelay(500)
 

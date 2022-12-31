@@ -9,6 +9,15 @@
           size="mini"
           style="margin-right: 8px;"
           flat
+          color="#aaaaaa"
+          @click="queryCurrentChannel"
+        >
+          定位频道
+        </vs-button>
+        <vs-button
+          size="mini"
+          style="margin-right: 8px;"
+          flat
           @click="dialogPaymentWeChat = !dialogPaymentWeChat"
         >
           微信支付
@@ -100,7 +109,7 @@
         warn
         class="btn-action"
         :disabled="buttonDisabled"
-        @click="dialogChannel = !dialogChannel"
+        @click="dialogChannelSwitch = !dialogChannelSwitch"
       >
         换线
       </vs-button>
@@ -242,9 +251,22 @@
         </template>
       </vs-dialog>
 
-      <!-- channel dialog -->
+      <!-- channel querying dialog -->
       <vs-dialog
-        v-model="dialogChannel"
+        v-model="dialogChannelQuery"
+        auto-width
+        not-padding
+        not-close
+        blur
+      >
+        <div class="dialog-payment">
+          <img :src="currentChannel">
+        </div>
+      </vs-dialog>
+
+      <!-- channel switching dialog -->
+      <vs-dialog
+        v-model="dialogChannelSwitch"
         blur
       >
         <template #header>
@@ -296,9 +318,11 @@ export default {
       fireStatus: null,
       dialogPaymentWeChat: false,
       dialogPaymentMeso: false,
-      dialogChannel: false,
+      dialogChannelQuery: false,
+      dialogChannelSwitch: false,
       fromChannel: '',
-      toChannel: ''
+      toChannel: '',
+      currentChannel: ''
     }
   },
   head () {
@@ -530,6 +554,14 @@ export default {
         const res = await this.getApi('/api/fire/status')
         const { data } = res
         this.fireStatus = `data:image/png;base64,${data}`
+      } catch (e) {}
+    },
+    async queryCurrentChannel () {
+      this.dialogChannelQuery = true
+      try {
+        const res = await this.getApi('/api/getchannel')
+        const { data } = res
+        this.currentChannel = `data:image/png;base64,${data}`
       } catch (e) {}
     },
     openNotification (text, options = {}) {

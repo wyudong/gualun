@@ -9,7 +9,7 @@ const { rebirth } = require('../actions/rebirth')
 const { teleport } = require('../actions/teleport')
 const { sos } = require('../actions/sos')
 const { home } = require('../actions/home')
-const { channel } = require('../actions/channel')
+const { channel, getChannel } = require('../actions/channel')
 const { list, goto } = require('../actions/map')
 const { trade } = require('../actions/trade')
 
@@ -95,6 +95,10 @@ app.post('/channel', (req, res) => {
   const { from, to } = req.body
   channel(from, to)
   res.send('ok')
+})
+app.get('/getchannel', async (req, res) => {
+  const data = await getChannel()
+  res.json(data)
 })
 app.get('/maps', (req, res) => {
   const data = list()

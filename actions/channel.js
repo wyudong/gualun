@@ -1,9 +1,36 @@
+const fs = require('fs')
 const robot = require('robotjs')
+const Jimp = require('jimp')
 const config = require('./config')
+const utils = require('./utils')
 
-const { KEY_ESCAPE, KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ENTER } = config
-const { CHANNEL_MIN, CHANNEL_MAX } = config
+const {
+  KEY_ESCAPE,
+  KEY_UP,
+  KEY_DOWN,
+  KEY_LEFT,
+  KEY_RIGHT,
+  KEY_ENTER,
+  POS_PLAYER_HUD,
+  CHANNEL_MIN,
+  CHANNEL_MAX,
+  CHANNEL_INFO,
+  CHANNEL_CROP
+} = config
+
+robot.setMouseDelay(250)
 robot.setKeyboardDelay(250)
+
+module.exports.getChannel = async () => {
+  robot.moveMouse(POS_PLAYER_HUD.x, POS_PLAYER_HUD.y)
+  await utils.sleep(500)
+  await utils.takeScreenshot(CHANNEL_INFO)
+  const channelInfo = await Jimp.read(CHANNEL_INFO)
+  const { width, height } = channelInfo.bitmap
+  await channelInfo.crop(width - 789, height - 84, 50, 18).writeAsync(CHANNEL_CROP)
+  const b64 = fs.readFileSync(CHANNEL_CROP, 'base64')
+  return b64
+}
 
 module.exports.channel = (from, to) => {
   console.log(`channel ${from} to ${to}`)

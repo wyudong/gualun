@@ -21,9 +21,11 @@ module.exports = {
   POS_TRADE_EXCHANGE: { x: 834, y: 377 },
   POS_TRADE_CONFIRM: { x: 1010, y: 567 },
   POS_TRADE_END: { x: 1049, y: 576 },
+  POS_PLAYER_HUD: { x: 974, y: 1012 },
   CHANNEL_MIN: 1,
   CHANNEL_MAX: 30,
   FIRE_DESKTOP: 'fire-desktop.png',
   FIRE_SAMPLE: 'fire-sample.png',
-  FIRE_STANDARD: 'fire-standard.png'
+  CHANNEL_INFO: 'channel-info.png',
+  CHANNEL_CROP: 'channel-crop.png'
 }

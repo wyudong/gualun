@@ -4,6 +4,7 @@ const config = require('./config')
 const configMaps = require('./config.maps')
 
 const { KEY_MAP, KEY_ENTER } = config
+
 robot.setMouseDelay(500)
 robot.setKeyboardDelay(500)
 

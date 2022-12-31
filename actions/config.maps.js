@@ -163,7 +163,7 @@ module.exports = [
       },
     ],
   },
-   {
+  {
     group: '苦痛的迷宮',
     range: 2,
     places: [
