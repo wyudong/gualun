@@ -22,6 +22,7 @@ robot.setMouseDelay(250)
 robot.setKeyboardDelay(250)
 
 module.exports.getChannel = async () => {
+  robot.moveMouse(0, 0) // channel info will not update if mouse not move
   robot.moveMouse(POS_PLAYER_HUD.x, POS_PLAYER_HUD.y)
   await utils.sleep(500)
   await utils.takeScreenshot(CHANNEL_INFO)
