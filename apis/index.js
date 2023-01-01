@@ -13,7 +13,7 @@ const { channel, getChannel } = require('../actions/channel')
 const { list, goto } = require('../actions/map')
 const { trade } = require('../actions/trade')
 
-const allowlist = ['/maps']
+const allowlist = ['/maps', '/getchannel']
 
 const accessCode = randomstring.generate({
   length: 3,
