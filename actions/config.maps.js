@@ -103,6 +103,17 @@ module.exports = [
     ],
   },
   {
+    group: '反轉城市',
+    range: 2,
+    places: [
+      {
+        name: '地上列車3',
+        list: { x: 835, y: 675 },
+        map: { x: 303, y: 448 },
+      },
+    ],
+  },
+  {
     group: '啾啾艾爾蘭',
     range: 2,
     places: [
