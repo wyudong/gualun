@@ -12,7 +12,7 @@ module.exports = {
   KEY_ENTER: 'enter',
   KEY_MAP: 'm',
   INTERVAL_TOTEM: 60 * 1000 * 5,
-  INTERVAL_FIRE: 60 * 1000 * 30,
+  INTERVAL_FIRE: 60 * 1000 * 31,
   FLAG_TOTEM: '.totem',
   FLAG_FIRE: '.fire',
   POS_REBIRTH_1920: { x: 917, y: 610 },
