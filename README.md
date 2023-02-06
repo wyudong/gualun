@@ -28,7 +28,7 @@ WantedBy=multi-user.target
 
 Caddyfile
 ```
-gualun.wyudong.com
+gualun.xyz
 encode gzip
 reverse_proxy :8080
 ```
