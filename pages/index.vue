@@ -32,7 +32,7 @@
           枫币交易
         </vs-button>
         <img style="width: 16px;" src="meso.png">
-        <span class="pricing">每小时 3.5 元或 1e 枫</span>
+        <span class="pricing">每小时 3 元或 1e 枫</span>
       </template>
     </vs-navbar>
 
