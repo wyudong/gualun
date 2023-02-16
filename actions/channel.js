@@ -34,7 +34,7 @@ module.exports.getChannel = async () => {
   return b64
 }
 
-module.exports.channel = (from, to) => {
+module.exports.channel = async (from, to) => {
   console.log(`channel ${from} to ${to}`)
   from = parseInt(from, 10)
   to = parseInt(to, 10)
@@ -58,10 +58,9 @@ module.exports.channel = (from, to) => {
     robot.keyTap(arrow)
   }
   // confirm
-  setTimeout(() => {
-    robot.moveMouse(POS_CHANNEL_CONFIRM.x, POS_CHANNEL_CONFIRM.y)
-    robot.mouseClick('left', false)
-  }, 500)
+  utils.sleep(500)
+  robot.moveMouse(POS_CHANNEL_CONFIRM.x, POS_CHANNEL_CONFIRM.y)
+  robot.mouseClick('left', false)
 }
 
 function channelsToArrows (from, to) {
