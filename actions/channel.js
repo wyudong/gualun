@@ -12,6 +12,7 @@ const {
   KEY_RIGHT,
   KEY_ENTER,
   POS_PLAYER_HUD,
+  POS_CHANNEL_CONFIRM,
   CHANNEL_MIN,
   CHANNEL_MAX,
   CHANNEL_INFO,
@@ -58,7 +59,8 @@ module.exports.channel = (from, to) => {
   }
   // confirm
   setTimeout(() => {
-    robot.keyTap(KEY_ENTER)
+    robot.moveMouse(POS_CHANNEL_CONFIRM.x, POS_CHANNEL_CONFIRM.y)
+    robot.mouseClick('left', false)
   }, 500)
 }
 

@@ -372,6 +372,12 @@ export default {
     },
     mapLevelRangeSelected (range) {
       this.filterMaps(this.mapLevelRangeSelected)
+    },
+    dialogChannelSwitch (visible) {
+      if (visible) {
+        this.fromChannel = ''
+        this.toChannel = ''
+      }
     }
   },
   async created () {
