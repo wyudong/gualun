@@ -1,6 +1,6 @@
 const fs = require('fs')
 const robot = require('robotjs')
-const config = require('./config')
+const config = require('../configs/settings')
 
 const { KEY_TOTEM, INTERVAL_TOTEM, FLAG_TOTEM } = config
 const path = `./${FLAG_TOTEM}`

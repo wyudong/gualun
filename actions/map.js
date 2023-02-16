@@ -1,7 +1,7 @@
 const robot = require('robotjs')
 const _ = require('lodash')
-const config = require('./config')
-const configMaps = require('./config.maps')
+const config = require('../configs/settings')
+const configMaps = require('../configs/maps')
 
 const { KEY_MAP, KEY_ENTER } = config
 

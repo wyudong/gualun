@@ -1,7 +1,7 @@
 const fs = require('fs')
 const robot = require('robotjs')
 const Jimp = require('jimp')
-const config = require('./config')
+const config = require('../configs/settings')
 const utils = require('./utils')
 
 const { KEY_FIRE, INTERVAL_FIRE, FLAG_FIRE, FIRE_DESKTOP, FIRE_SAMPLE } = config

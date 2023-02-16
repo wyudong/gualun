@@ -1,5 +1,5 @@
 const robot = require('robotjs')
-const config = require('./config')
+const config = require('../configs/settings')
 
 const {
   POS_TRADE_ACCEPT,
