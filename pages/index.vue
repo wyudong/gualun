@@ -9,7 +9,7 @@
           size="mini"
           style="margin-right: 8px;"
           flat
-          color="#aaaaaa"
+          color="#f06595"
           @click="queryCurrentChannel"
         >
           定位频道
