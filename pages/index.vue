@@ -44,9 +44,9 @@
         placeholder="输入 3 位数代码"
         :state="accessCodeState"
       />
-      <p class="hint hint-2">
+      <b class="hint">
         练级前先填入代码
-      </p>
+      </b>
       <hr>
       <div class="row-wrapper">
         <vs-button
@@ -66,8 +66,8 @@
           </template>
         </vs-switch>
       </div>
-      <p class="hint hint-2">
-        启用自动后，轮回 5 分钟一次
+      <p class="hint">
+        若启用自动，轮回 5 分钟一次
       </p>
       <div class="row-wrapper">
         <vs-button
@@ -90,8 +90,8 @@
           <img :src="fireStatus">
         </div>
       </div>
-      <p class="hint hint-2">
-        启用自动后，燃烧 30 分钟一次（慎用！）
+      <p class="hint">
+        若启用自动，燃烧 30 分钟一次（不建议自动烧）
       </p>
       <vs-button
         border
@@ -101,8 +101,11 @@
       >
         回城
       </vs-button>
-      <p class="hint hint-2">
-        回城后顺便取消自动或关闭网页，不然一直放轮显得我很傻
+      <p class="hint" style="margin-bottom: 0 !important;">
+        结束后帮我回城并关闭自动轮回
+      </p>
+      <p class="hint">
+        使用两次回城也许可以解决换线卡住的问题
       </p>
       <vs-button
         border
@@ -163,7 +166,7 @@
         </vs-button>
       </div>
       <p class="hint">
-        传送我至练级地图，建议先回城再换线、跑图（实验性功能）
+        传送我至练级地图，建议先回城再换线、跑图
       </p>
       <vs-button
         border
@@ -175,7 +178,7 @@
         复活
       </vs-button>
       <p class="hint">
-        如果我死了，请使用该项功能
+        复活飘起来的亡魂
       </p>
       <vs-button
         border
@@ -187,7 +190,7 @@
         群攻
       </vs-button>
       <p class="hint">
-        当黑王靠近我后，才推荐施放（60 秒 CD）
+        对最多 7 名敌人以 2000% 的伤害攻击 6 次（50 秒 CD）
       </p>
       <vs-button
         border
@@ -199,7 +202,7 @@
         瞬移
       </vs-button>
       <p class="hint">
-        随机变换位置（12 秒 CD）
+        瞬间移动到地图上的随机位置（12 秒 CD）
       </p>
 
       <!-- payment dialog wechat -->
@@ -625,7 +628,7 @@ body {
 }
 .vs-radio__label {
   font-size: 12px;
-  color: #495057;
+  color: #868e96;
 }
 hr {
   border: 0;
@@ -662,12 +665,9 @@ hr {
   font-size: 12px;
 }
 .hint {
-  margin: 5px 0 15px;
-  color: #495057;
-  font-size: 12px;
-}
-.hint-2 {
+  margin: 5px 0 18px;
   color: #868e96;
+  font-size: 12px;
 }
 .btn-action {
   margin-left: 20px;
