@@ -258,6 +258,11 @@ module.exports = [
     range: 3,
     places: [
       {
+        name: '不法之徒所支配的荒野1',
+        list: { x: 835, y: 255 },
+        map: { x: 152, y: 619 },
+      },
+      {
         name: '不法之徒所支配的荒野2',
         list: { x: 835, y: 255 },
         map: { x: 82, y: 614 },
