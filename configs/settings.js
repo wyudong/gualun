@@ -2,6 +2,7 @@ module.exports = {
   KEY_TOTEM: 'f9',
   KEY_FIRE: 'f10',
   KEY_HOME: '0',
+  KEY_SIT: '9',
   KEY_SOS: 'delete',
   KEY_TELEPORT: 'control',
   KEY_ESCAPE: 'escape',
