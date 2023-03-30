@@ -226,6 +226,11 @@ module.exports = [
     range: 3,
     places: [
       {
+        name: '賽爾尼溫西方城牆1',
+        list: { x: 835, y: 215 },
+        map: { x: 82, y: 436 },
+      },
+      {
         name: '賽爾尼溫東邊城牆2',
         list: { x: 835, y: 215 },
         map: { x: 582, y: 403 },
