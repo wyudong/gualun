@@ -103,17 +103,6 @@ module.exports = [
     ],
   },
   {
-    group: '反轉城市',
-    range: 2,
-    places: [
-      {
-        name: '地上列車3',
-        list: { x: 835, y: 675 },
-        map: { x: 303, y: 448 },
-      },
-    ],
-  },
-  {
     group: '啾啾艾爾蘭',
     range: 2,
     places: [
@@ -273,6 +262,11 @@ module.exports = [
         map: { x: 82, y: 614 },
       },
       {
+        name: '浪漫日落的汽車戲院1',
+        list: { x: 835, y: 255 },
+        map: { x: 409, y: 550 },
+      },
+      {
         name: '浪漫日落的汽車戲院5',
         list: { x: 835, y: 255 },
         map: { x: 479, y: 434 },
@@ -291,6 +285,17 @@ module.exports = [
         name: '沒有目的地的橫貫列車3',
         list: { x: 835, y: 255 },
         map: { x: 170, y: 358 },
+      },
+    ],
+  },
+  {
+    group: '奧迪溫',
+    range: 3,
+    places: [
+      {
+        name: '通往城門的路2',
+        list: { x: 835, y: 675 },
+        map: { x: 192, y: 544 },
       },
     ],
   },
