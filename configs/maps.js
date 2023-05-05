@@ -293,6 +293,11 @@ module.exports = [
     range: 3,
     places: [
       {
+        name: '通往城門的路1',
+        list: { x: 835, y: 675 },
+        map: { x: 241, y: 546 },
+      },
+      {
         name: '通往城門的路2',
         list: { x: 835, y: 675 },
         map: { x: 192, y: 544 },
