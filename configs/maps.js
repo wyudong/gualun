@@ -308,6 +308,16 @@ module.exports = [
     range: 3,
     places: [
       {
+        name: '被佔領的巷道2',
+        list: { x: 835, y: 675 },
+        map: { x: 426, y: 448 },
+      },
+      {
+        name: '被佔領的巷道3',
+        list: { x: 835, y: 675 },
+        map: { x: 443, y: 404 },
+      },
+      {
         name: '通往城門的路1',
         list: { x: 835, y: 675 },
         map: { x: 245, y: 547 },
