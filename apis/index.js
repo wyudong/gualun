@@ -34,15 +34,16 @@ const limiter = rateLimit({
 app.use(morgan('[:date[clf]] :remote-addr :method :url :status - :response-time ms'))
 app.use(limiter)
 app.use(bodyParser.json())
-app.use((req, res, next) => {
-  if (allowlist.includes(req.path)) {
-    return next()
-  }
-  if (req.headers['x-access'] && req.headers['x-access'] === global.accessCode) {
-    return next()
-  }
-  res.sendStatus(401)
-})
+// free use from 2023.09.19
+// app.use((req, res, next) => {
+//   if (allowlist.includes(req.path)) {
+//     return next()
+//   }
+//   if (req.headers['x-access'] && req.headers['x-access'] === global.accessCode) {
+//     return next()
+//   }
+//   res.sendStatus(401)
+// })
 
 app.get('/ping', (req, res) => {
   res.send('pong')

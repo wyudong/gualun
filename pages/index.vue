@@ -42,6 +42,7 @@
         class="code-input"
         type="password"
         placeholder="输入 3 位数代码"
+        disabled
         :state="accessCodeState"
       />
       <b class="hint">
