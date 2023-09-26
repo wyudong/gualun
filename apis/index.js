@@ -20,7 +20,7 @@ const accessCode = randomstring.generate({
   charset: 'numeric'
 })
 global.accessCode = accessCode
-console.log(`access: ${accessCode}`)
+// console.log(`access: ${accessCode}`)
 
 app.enable('trust proxy')
 
